@@ -1,0 +1,191 @@
+{
+  "schema_version": 3,
+  "run_date": "2026-11-17",
+  "slot": "2317",
+  "started_at": "2026-11-18T07:17:12Z",
+  "finished_at": "2026-11-18T08:07:14Z",
+  "mode": "FIX",
+  "task_id": "HL-050",
+  "phase": "3-personal-agent",
+  "branch": "run/2026-11-17-2317-HL-050",
+  "base": "main",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "Answer Will's #69 change request (comment 6971843538): replace the hand-written evals/p3/cases.jsonl with the output of a committed seeded generator (scripts/gen_p3_cases.py, seed 50) keeping the 20-case shape (15 planted, 7 hard: decoy and conflict, synthetic:true on every line); scorer unchanged.",
+    "verifier": "tests/frozen/HL-050-fix2.json and -fix3.json (red at freeze, green after); all HL-050 manifests fully passed in the vitest JSON report; npm run lint, typecheck, build, full vitest; main's scan_sensitive.py --diff origin/main..HEAD; frozen check (expected exit=1 only for the Will-approved cases.jsonl replacement).",
+    "step": "one FIX on HL-050; #69 merged mid-run (07:21:45Z) so delivery is a new draft PR against main.",
+    "stop": "success = checks 0, every frozen test passed, reviewer PASS (or CONDITIONAL only for Will's waiver); give up = tests not red for the right reason, any other frozen file needs editing, or the time box.",
+    "budget": "140 min run box \u00b7 9 dispatches \u00b7 1 fix pass"
+  },
+  "freeze_sha": "be08da02ca78e510352fdde21d36280284d34061",
+  "fix_freeze_shas": [
+    "e5ae2efbb132702709bb0f2c063f00f008cee823",
+    "7b5567c8d9acd263279a1539ef9036115c641a1a",
+    "e88357990e9dd9b6c2b730d7095fb02f9b40bc63"
+  ],
+  "exemption": "Will-approved replacement of frozen evals/p3/cases.jsonl (PR #69 comment 6971843538); frozen check exit=1 for that file only",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "fix freeze 2",
+      "model": "sonnet",
+      "outcome": "red-as-expected (11/11 failed: script missing)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "fix 2",
+      "model": "sonnet",
+      "outcome": "green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no regression; 4/4 generator mutants caught",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r3",
+      "model": "opus",
+      "outcome": "CONDITIONAL (notes name wrong sources; #69 already merged)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "fix freeze 3",
+      "model": "sonnet",
+      "outcome": "red-as-expected (73 failed, 92 passed)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "fix 3",
+      "model": "sonnet",
+      "outcome": "green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no regression; 3/3 note mutants caught",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r4",
+      "model": "opus",
+      "outcome": "CONDITIONAL (frozen-file waiver is Will's call; no builder fixes)",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive (main) --diff origin/main..HEAD",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 1
+    },
+    {
+      "name": "vitest full (json)",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    },
+    {
+      "name": "rules/branches/main missing protections",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional (hl-050, 4 files)",
+      "exit": 0,
+      "passed": 208,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "regression (full vitest at 9109b54)",
+      "exit": 0,
+      "passed": 1255,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": false,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "scripts/gen_p3_cases.py:312",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "CONDITIONAL",
+    "path": "reviews/2026-11-17T2317-HL-050-r4.md",
+    "fix_pass_used": true,
+    "unflagged_claims": null
+  },
+  "not_claimed": [
+    "CI on the pushed head (pending at record time)",
+    "who merged #69 (PPDSAgent at 07:21:45Z; not this run)",
+    "conflict-note content is not pinned by any frozen test (checked by hand and by the reviewer's script only)",
+    "dispatch start/finish times not recorded",
+    "the first fix-freeze dispatch was sent without the test-engineer brief pasted (placeholder left in the prompt); later dispatches pointed at a verbatim copy of each brief from main"
+  ],
+  "flakes": [],
+  "directions_acked": [
+    "https://github.com/PPDSAgent/harness-lab/issues/3#issuecomment-6971843816"
+  ],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P3",
+    "status": "not-yet-checkable",
+    "evidence": "PLAN.md P3 stop rule needs a prototype plus one day and an eval run; neither exists (HL-051..054 not built)."
+  },
+  "limits_hit": null,
+  "tokens": 18116578,
+  "cost_usd": null,
+  "needs_will": [
+    "waive DoD item 3: frozen check exit=1 only because evals/p3/cases.jsonl (frozen under HL-050) was replaced by the generator output, as approved",
+    "confirm you merged #69 at 07:21:45Z (merged_by PPDSAgent; this run did not merge)",
+    "cost_usd source: Will's Anthropic usage export, read on his Mac"
+  ],
+  "notes": "FIX mode on #69 (Will's change request after needs:will). #69 merged mid-run at da80c1e, branch deleted; fixes delivered on a new branch from da80c1e. add_repo tool not exposed; repo already cloned at /home/claude/harness-lab (symlinked to ~/harness-lab), unshallowed. Deny-list check skipped: records on main. goal_cmd: unavailable. hl-021b flake did not fire in either full run. Usage: npm run usage over the lead transcript and 8 subagent transcripts; cost_usd null (tool printed no cost); turns after the usage step are not counted."
+}

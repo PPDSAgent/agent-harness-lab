@@ -1,0 +1,254 @@
+{
+  "base": "run/2026-11-09-0939-HL-011a",
+  "branch": "run/2026-11-09-1239-HL-011b",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 1,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff tip..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 0,
+      "name": "frozen vitest files all passed"
+    },
+    {
+      "exit": 0,
+      "name": "playwright frozen specs --project ui"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-011b/home-skill-1440-light.png",
+      "screens/HL-011b/home-skill-1440-dark.png",
+      "screens/HL-011b/home-skill-390-light.png",
+      "screens/HL-011b/home-skill-390-dark.png",
+      "screens/HL-011b/home-skill-390-light-scrolled.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected (7f3b65f: 15 failed, 2 passed)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "47fbad4, 22286ea; reported green but missed an HL-003 regression it caused (fixtures README edit)",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "build (resumed)",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "checkfix 1bd97c1 restored the generator-owned README; HL-003 green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no regression; initial JS 255,174 B of 256,000; screens 7396a44",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL (390 px label collisions, no scroll cue)",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected (802d8a1: 6 failed at 390 px, 3 passed at 1440)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "9c89199 green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no regression; screens 71505d9",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL (no builder fixes; Will's calls only)",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-09T21:33:35Z",
+  "freeze_sha": "7f3b65f",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": "10 role invocations (9 fresh dispatches + 1 resumed builder for the HL-003 regression) against a 9-dispatch budget",
+  "loop_header": {
+    "budget": "140 minutes from 20:39Z; at most 9 dispatches (freeze, build, verify, critic, review + one fix pass: fix freeze, build, verify, review).",
+    "goal": "HL-011b (second part of HL-011): per-skill p50/p95/p99 for latency, tokens and cost: skill name carried into the run model, a pure summarizeBySkill, and a per-skill chart + data table on the home page.",
+    "step": "one task part (HL-011b).",
+    "stop": "success = frozen tests green, checks exit 0 except the inherited HL-010b frozen-test failure from #33, reviewer PASS/CONDITIONAL. Give up = tests not red for the right reason, frozen check fails, HEAD moves in review, or the 130-minute box.",
+    "verifier": "frozen tests in tests/frozen/HL-011b.json (red before, green after); npm run lint, typecheck, test, build; main's scan_sensitive.py --diff origin/run/2026-11-09-0939-HL-011a..HEAD; the frozen check (§3.5); every frozen Vitest file fully passed (vitest JSON); test engineer's verify table; design critic; fresh reviewer."
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/skill-usage-charts.tsx:85",
+    "went_red": true
+  },
+  "needs_will": [
+    "HL-008 frozen toEqual (tests/hl-008.run-records.test.ts:173) contradicts HL-011b's skill toBeNull; builder used a non-enumerable skill property (src/lib/ingest/team.ts:45-48). Clean fix needs Will to amend the HL-008 frozen test",
+    "token chart empty for every skill: Claude Code fixtures carry totalTokens null",
+    "design taste calls: D4 density (scroll vs compact table at 390 px), D2 palette, empty tokens card form",
+    "initial JS 249.2 KiB of 250: next eager feature will need lazy loading",
+    "CI inherits #33's red HL-010b test",
+    "veto or keep the HL-011 split",
+    "2026-11-09T0339 SECURITY record (v3) still not committed: the frozen HL-002 validator accepts only v2"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root tools not present in this session; repo already cloned at /home/claude/harness-lab, ~/harness-lab symlinked. Faker exit 0, names: on. Deny-list step 1a skipped: records on main. SEC-30 (high, open) skipped for BUILD: its fix is in .github/workflows/guard.yml, a law path runs cannot touch. Schema v2 because the committed validator accepts only v2; v3 fields: fix_freeze_shas ['802d8a1'], exemption none, review.unflagged_claims null (PR body not graded). flakes: none observed. Reflog: 'reset: moving to HEAD' at 20:55:03Z during the builder's dispatch; HEAD stayed 7f3b65f, no commit rewritten. not_claimed: PR body not graded; perf on a real device (lab numbers, one cold load); ingest throughput (no 10k fixture); design critic did not re-grade the post-fix screens (reviewer r2 saw them); whether the swipe cue is wanted under the tokens table; per-test regression diff (baseline record has no per-test results).",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud runner (lab)",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 323
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud runner (lab)",
+      "metric": "cls",
+      "unit": "score",
+      "value": 0.0001
+    },
+    {
+      "budget": 200,
+      "machine": "cloud runner (lab)",
+      "metric": "inp",
+      "unit": "ms",
+      "value": 56
+    },
+    {
+      "budget": 250,
+      "machine": "cloud runner (lab)",
+      "metric": "initial_js_gzip_main_route",
+      "unit": "KB",
+      "value": 249.2
+    },
+    {
+      "budget": 2000,
+      "machine": "cloud runner (lab)",
+      "metric": "ingest_10k_events",
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-09T1239-HL-011b-r2.md",
+    "verdict": "CONDITIONAL"
+  },
+  "run_date": "2026-11-09",
+  "schema_version": 2,
+  "slot": "1239",
+  "started_at": "2026-11-09T20:39:02Z",
+  "stop_rule": {
+    "evidence": "P1 window ended 2026-11-08; HL-017 and HL-020 not built, so no recurring check has run; no P1 window direction from Will on the Daily status issue (no non-bot comments there this run)",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 1,
+      "failed": 1,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 293,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 23,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-011b",
+  "tokens": null
+}

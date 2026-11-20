@@ -1,0 +1,206 @@
+{
+  "base": "main",
+  "branch": "run/2026-11-02-2342-HL-001",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci (fresh clone)"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff"
+    },
+    {
+      "exit": 0,
+      "name": "frozen diff"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen test passed"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-001/1440-light.png",
+      "screens/HL-001/1440-dark.png",
+      "screens/HL-001/390-light.png",
+      "screens/HL-001/390-dark.png",
+      "screens/HL-001/390-light-focus.png",
+      "screens/HL-001/390-dark-focus.png"
+    ],
+    "verdict": "CONDITIONAL (pre-fix; conditions confirmed met by reviewer r2)"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "all-suites-green",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review-r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix-pass",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "all-suites-green",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review-r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "PASS",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-03T08:04:06Z",
+  "freeze_sha": "dcc295494291748ad1fd59f4946ce76aa4e9a86b",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "130/140 min time box · 8 dispatches · 1 fix pass",
+    "goal": "HL-001 app skeleton meets every Accept line on a fresh clone",
+    "step": "one task, one PR",
+    "stop": "success: all checks exit 0 and reviewer PASS; give up: still not PASS after one fix pass -> PR labeled needs:will, or 130 min -> wip",
+    "verifier": "frozen tests/hl-001.config.test.ts + tests/hl-001.app.test.tsx (manifest tests/frozen/HL-001.json at freeze); npm ci, lint, typecheck, test, build on a fresh clone; main scanner --diff origin/main..HEAD; frozen diff vs freeze; every frozen test passed in vitest JSON"
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/App.tsx:34",
+    "went_red": true
+  },
+  "needs_will": [],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root tools not present in this session; repo was pre-attached and pre-cloned in the container and symlinked to the playbook path. First run of the schedule, unattended. Labels and standing issues #3 #4 #5 created this run (dagger steps). Regression row has no baseline (no merged run record). Perf values are the max of the lab range on the cloud runner.",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 220
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": 40
+    },
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip",
+      "unit": "kB",
+      "value": 175.98
+    }
+  ],
+  "phase": "0-foundations",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-02T2342-HL-001-r2.md",
+    "verdict": "PASS"
+  },
+  "run_date": "2026-11-02",
+  "schema_version": 2,
+  "slot": "2342",
+  "started_at": "2026-11-03T07:42:23Z",
+  "stop_rule": {
+    "evidence": null,
+    "project": "P0",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 10,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": null,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 10,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-001",
+  "tokens": null
+}

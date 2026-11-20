@@ -1,0 +1,142 @@
+{
+  "base": "run/2026-11-05-1839-HL-009",
+  "branch": "run/2026-11-05-2139-HL-008",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 1,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff"
+    },
+    {
+      "exit": 0,
+      "name": "frozen diff"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen test passed"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": "2026-11-06T05:43:56Z",
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": "2026-11-06T05:42:18Z"
+    },
+    {
+      "duty": "build",
+      "finished_at": "2026-11-06T05:45:28Z",
+      "model": "sonnet",
+      "outcome": "green",
+      "role": "builder",
+      "started_at": "2026-11-06T05:44:01Z"
+    },
+    {
+      "duty": "verify",
+      "finished_at": "2026-11-06T05:48:59Z",
+      "model": "sonnet",
+      "outcome": "no-regression",
+      "role": "test-engineer",
+      "started_at": "2026-11-06T05:46:38Z"
+    },
+    {
+      "duty": "review",
+      "finished_at": "2026-11-06T05:51:19Z",
+      "model": "opus",
+      "outcome": "PASS",
+      "role": "reviewer",
+      "started_at": "2026-11-06T05:48:59Z"
+    }
+  ],
+  "finished_at": "2026-11-06T05:51:48Z",
+  "freeze_sha": "5f5d302236e62f953bb798e8b2ff167251d76422",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "2h20m · 8 dispatches · 1 fix pass",
+    "goal": "HL-008 — map the team's own run records (runs/*.json) into the normalized run model (src/lib/ingest) as a third source; every committed record parses; nulls are preserved, never coerced to 0.",
+    "step": "one task (HL-008), one draft PR stacked on #20.",
+    "stop": "success = frozen tests red before, green after; all checks exit 0 except the inherited lint error at tests/hl-003.claude-code-fixtures.test.ts:251 (frozen HL-003 file, awaiting Will); reviewer PASS. Give up = reviewer not PASS after the one fix pass (open PR with needs:will), or the 140-minute box (open PR with wip).",
+    "verifier": "frozen tests listed in tests/frozen/HL-008.json (at the freeze commit), plus npm run lint, npm run typecheck, npm test, npm run build, main's scan_sensitive.py --diff origin/run/2026-11-05-1839-HL-009..HEAD, frozen-diff exit 0, every frozen Vitest test passed in the JSON report."
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/lib/ingest/team.ts:45",
+    "went_red": true
+  },
+  "needs_will": [
+    "Inherited lint error tests/hl-003.claude-code-fixtures.test.ts:251 (frozen HL-003 file) still blocks DoD 3 across #12-#20 and this PR: re-freeze approved, or waive",
+    "PRs #13 (HL-003) and #16 (HL-007) were merged into stack branches (HL-002 and HL-005), not main",
+    "WAIT/SECURITY records from the Run log not committed: WAIT records fail the tip schema until PR #19 lands"
+  ],
+  "notes": "goal_cmd: unavailable. deny-list check: not testable from this start directory (reviews/2026-11-05T2139-deny-list-check.md). add_repo/register_repo_root not offered; repo pre-cloned, ~/harness-lab symlinked. Design critic not dispatched: no file that renders UI changed. faker install exit 0, names: on. perf[] empty: ingest of committed records measured once at 0.67 ms for 8 records (lab, cloud-runner), not a budget metric; 10k-event ingest budget unmeasured. Dispatch prompts pointed each role at its brief exported from origin/main (~/hl-run/brief-*.md).",
+  "perf": [],
+  "phase": "0-foundations",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": false,
+    "path": "reviews/2026-11-05T2139-HL-008-r1.md",
+    "verdict": "PASS"
+  },
+  "run_date": "2026-11-05",
+  "schema_version": 2,
+  "slot": "2139",
+  "started_at": "2026-11-06T05:39:11Z",
+  "stop_rule": {
+    "evidence": "P1 stop rule is checkable from Fri Nov 6 (PLAN.md); HL-020 (recurring check) not built",
+    "project": "P1",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 174,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-008",
+  "tokens": null
+}

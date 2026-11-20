@@ -1,0 +1,229 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-12",
+  "slot": "0943",
+  "started_at": "2026-11-12T17:43:29Z",
+  "finished_at": null,
+  "mode": "BUILD",
+  "task_id": "HL-021a",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-12-0943-HL-021a",
+  "base": "run/2026-11-12-0039-HL-015b",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-021a: evidence-chain library over runs/*.json plus a lazy Evidence trail section where a team-run chart point opens Run -> PR -> review verdict -> broken check",
+    "verifier": "frozen tests tests/hl-021a.evidence-chain.test.ts, tests/hl-021a.evidence-trail.component.test.tsx, tests/hl-021a.evidence-trail-chunk.test.ts (freeze 4805b57) and e2e/hl-021a-fix1.evidence-trail-390-contrast.spec.ts (fix freeze 36d7659); npm run lint, typecheck, test, build; main's scan_sensitive.py --diff; frozen check (daily-run 3.5)",
+    "step": "one split part (HL-021a) of HL-021; HL-021b (click-through from the existing charts and run detail) left for a later run",
+    "stop": "success: every frozen test passes, lint/typecheck/build/scan exit 0, no new npm test failures beyond the 3 inherited from #33, reviewer PASS; give up: tests not red for the right reason, a frozen test would need changing, or the time box",
+    "budget": "140 min run box, 9 dispatches, 1 fix pass"
+  },
+  "freeze_sha": "4805b57917cb3aa2800beef9c060d22608e4f57e",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "4805b57: 3 vitest files red (module missing, no evidence-trail chunk)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "e48d43f: frozen 47/47 green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "verify table, screens 8c8bb01",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "design-critic",
+      "duty": "critique",
+      "model": "sonnet",
+      "outcome": "CONDITIONAL (390 px chart unreadable, weak selection cue)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "CONDITIONAL r1",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "fix-freeze",
+      "model": "sonnet",
+      "outcome": "36d7659: Playwright spec 6 of 8 red",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "fix",
+      "model": "sonnet",
+      "outcome": "05e5fe2: fix1 spec 8/8 green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "verify table, screens cb51e60",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "PASS r2",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npm test",
+      "exit": 1
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive.py (main) --diff",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "every frozen vitest test passed",
+      "exit": 0
+    },
+    {
+      "name": "playwright fix1 spec",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional",
+      "exit": 1,
+      "passed": 487,
+      "failed": 3,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "integration",
+      "exit": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "ui",
+      "exit": 0,
+      "passed": 61,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "a11y",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [
+    {
+      "metric": "lcp_main_route",
+      "value": 226,
+      "unit": "ms",
+      "budget": 2500,
+      "machine": "cloud runner (lab)"
+    },
+    {
+      "metric": "cls_main_route",
+      "value": 0,
+      "unit": "score",
+      "budget": 0.1,
+      "machine": "cloud runner (lab)"
+    },
+    {
+      "metric": "initial_js_gzip",
+      "value": 259037,
+      "unit": "bytes",
+      "budget": 256000,
+      "machine": "cloud runner (lab)"
+    }
+  ],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/components/evidence-trail.tsx:85",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "path": "reviews/2026-11-12T0943-HL-021a-r2.md",
+    "fix_pass_used": true
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": "CONDITIONAL",
+    "screens": [
+      "screens/HL-021a/home-evidence-1440-light.png",
+      "screens/HL-021a/home-evidence-1440-dark.png",
+      "screens/HL-021a/home-evidence-390-light.png",
+      "screens/HL-021a/home-evidence-390-dark.png"
+    ]
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "PLAN.md Stop rule P1: the recurring check needs HL-017/HL-020, which have no PR in this run's open/closed lists; the P1 window ended Nov 8. P3 window runs Nov 12-14; HL-050 has no PR."
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "#43 labeled needs:will this run: its only red CI is inherited from #33 and can't be cleared by a FIX run without your call",
+    "#33 (not draft): HL-010b frozen test, initial-JS budget, HL-013 lazy-import test - all red, all your call",
+    "SEC-30 (#30, high) is first in run order but its fix is a law path; runs can't build it",
+    "HL-006 skipped again for the reason run 0039 gave: it needs main's PR #41 tokens, which the stack tip lacks",
+    "taste calls: y-axis 0-3 encoding of the evidence chart; use of the reserved --evidence token (DESIGN.md D2b)"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not offered in this session; used the pre-attached clone at /home/claude/harness-lab (symlinked to ~/harness-lab). Deny-list canary skipped: reviews/*-deny-list-check.md records are on main. schema_version 2 because the committed HL-002 validator (tests/hl-002.run-record.test.ts) rejects v3 keys, as run 0039 found; the v3 fields go here instead. not_claimed: design critic did not re-grade the post-fix screens (dispatch budget spent); r2 reviewer graded them; initial JS budget: still over (inherited from #33); this task adds +70 to +73 bytes gzip; the 3 inherited failing test files were not re-run on the base by the lead this run; one console error seen once at 1440 light during the test engineer's capture, not investigated; perf on a real phone; ingest benchmark (no 10k fixture). flakes: none. fix_freeze_shas: 36d7659d220455b7894a0cd618a832c8b627c5de. exemption: none. review.unflagged_claims: null (reviewer not given the PR body). WAIT/SECURITY record 0339 on Run log #42 not committed (v3, fails the v2 validator). Reflog: no amend, rebase, reset or filter-branch entries."
+}

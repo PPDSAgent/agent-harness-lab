@@ -1,0 +1,94 @@
+{
+  "base": "main",
+  "branch": "run/2026-11-09-0041-HL-010b",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 1,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff origin/main..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 1,
+      "name": "every frozen test passed"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "7 of 8 frozen tests green; 1 frozen test unsatisfiable as written",
+      "role": "builder",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-09T08:51:09Z",
+  "freeze_sha": "b13d6f8",
+  "frozen_tests_all_ran": false,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "2h · 9 dispatches · 1 fix pass",
+    "goal": "HL-010b: run detail with a step timeline (tool calls, durations, errors), opened from a runs-list row",
+    "step": "one split part (HL-010b) of HL-010",
+    "stop": "success: all checks green and reviewer PASS; give up: a frozen test cannot pass as written (Will call), or the 130-min box",
+    "verifier": "frozen tests tests/hl-010b.format-duration.test.ts and tests/hl-010b.run-detail.component.test.tsx (manifest tests/frozen/HL-010b.json) all pass; npm run lint/typecheck/test/build exit 0; main scanner --diff origin/main..HEAD exit 0; frozen check exit=0"
+  },
+  "mode": "BUILD",
+  "mutation_check": null,
+  "needs_will": [
+    "frozen test tests/hl-010b.run-detail.component.test.tsx \"renders a null duration as — and never null/undefined/NaN\" cannot pass: fixture tool name tool-nulldur contains \"null\" and the assertion is not.toMatch(/null|undefined|NaN/) on text that must contain that name; changing a frozen test is Will's call"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not offered in this session; used the pre-attached clone. Deny-list canary: not testable from start directory (reviews/2026-11-09T0041-deny-list-check.md). Also commits the 2026-11-08T0339 SECURITY record from the Run log, which no earlier BUILD committed. not_claimed: no reviewer verdict: run stopped for Will before review; no verify table, screenshots or design verdict; no perf measurement; deny list loading: not testable from start directory /home/claude. flakes: none. Written as schema_version 2 because the committed validator (schemas/, HL-002) accepts only v2 while runs/SCHEMA.md says v3 (conflict for Will). The 2026-11-08T0339 SECURITY record was not committed: its dispatches carry duration_ms, which the v2 validator rejects.",
+  "perf": [],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-09",
+  "schema_version": 2,
+  "slot": "0041",
+  "started_at": "2026-11-09T08:41:12Z",
+  "stop_rule": {
+    "evidence": "P1 window ended 2026-11-08; HL-017 and HL-020 not built; no recurring check has run",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [],
+  "task_id": "HL-010b",
+  "tokens": null
+}

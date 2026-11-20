@@ -1,0 +1,55 @@
+{
+  "base": null,
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules/branches/main missing protections"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [],
+  "exemption": null,
+  "finished_at": "2026-11-17T20:39:52Z",
+  "fix_freeze_shas": [],
+  "flakes": [],
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "WAIT",
+  "mutation_check": null,
+  "needs_will": [
+    "#66 checks red: frozen HL-022a A5 / HL-022b B5 tests fail on any src/ change stacked above #65 (changing frozen tests is Will call)",
+    "#62 #63 #65 #66 all needs:will with no new Will comment"
+  ],
+  "not_claimed": [
+    "no checks re-run locally; CI states read from check-runs API",
+    "P2 stop-rule status taken from run 0939 finished comment, not re-evaluated"
+  ],
+  "notes": "WAIT: stack red (#66 checks=failure on 0ea724b; stack-red comment already stands). Open run PRs 4/5, all needs:will. Deny-list canary echoed (not loaded) from start dir /home/claude/harness-lab with canary count 1; deny-list-check records already on main. add_repo tool not exposed this session; repo was already cloned at /home/claude/harness-lab and fetched OK. goal_cmd: unavailable",
+  "perf": [],
+  "phase": "2-forecast-mcp-app",
+  "pr_number": null,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-17",
+  "schema_version": 3,
+  "slot": "1238",
+  "started_at": "2026-11-17T20:38:46Z",
+  "stop_rule": {
+    "evidence": "PLAN.md:128-131 day-1 deadline Mon Nov 9 passed; HL-030a (#66) not yet rendering in any host",
+    "project": "P2",
+    "status": "tripped"
+  },
+  "suites": [],
+  "task_id": null,
+  "tokens": null
+}

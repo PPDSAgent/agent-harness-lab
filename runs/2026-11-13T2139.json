@@ -1,0 +1,224 @@
+{
+  "base": "run/2026-11-13-1917-HL-026",
+  "branch": "run/2026-11-13-2139-HL-024",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "main ruleset rules missing (count)"
+    },
+    {
+      "exit": 0,
+      "name": "faker==40.44.0 install"
+    },
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "vitest run (full, json reporter)"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff origin/run/2026-11-13-1917-HL-026..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen vitest test passed"
+    },
+    {
+      "exit": 0,
+      "name": "playwright --project journeys (json) every frozen spec passed"
+    },
+    {
+      "exit": 0,
+      "name": "npm run usage on this run transcripts"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-024/home-1440-light.png",
+      "screens/HL-024/home-1440-dark.png",
+      "screens/HL-024/home-390-light.png",
+      "screens/HL-024/home-390-dark.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected: wiring test 2/3 failed (no test:journeys script, vitest does not exclude tests/journeys); 3/3 journeys failed on favicon.ico 404 console error",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "a982104 green on frozen tests; full vitest then showed hl-009 LCP regression (3/3 red at head, 3/3 green at start); resumed, ba10c88 fixed perf-lib frame selection",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "all suites exit 0; screens b231c07; mutation index.html:28 -> 3/3 journeys red",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "critic",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL: favicon fills not DESIGN.md tokens",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "r1 CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix-pass test",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "abb8e7c metricsFromTrace unit test, red on reverted perf-lib",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "6428754 comment-only sourcing (exempt)",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "review",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "r2 CONDITIONAL (favicon colours: Will call)",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": null,
+  "freeze_sha": "2223eba",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "140 min, 9 dispatches, 1 fix pass",
+    "goal": "HL-024: three P1 journey tests under tests/journeys/ (open a run, filter, evidence to PR), keyboard-only at 390 px, 0 console errors, 0 failed requests",
+    "step": "one task, one PR, stacked on #53",
+    "stop": "success: all checks 0 and reviewer PASS; give up: tests not red for the right reason, frozen check non-zero, or the 130/140-minute box",
+    "verifier": "frozen tests/hl-024.journeys-wiring.test.ts + tests/journeys/*.spec.ts (manifest tests/frozen/HL-024.json) via vitest and Playwright JSON reports; npm ci, lint, typecheck, vitest, build, main scan --diff, frozen check; reviewer verdict"
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/runs-list.tsx:22",
+    "went_red": true
+  },
+  "needs_will": [
+    "HL-024 PR: favicon colours (#0f172a/#5eead4) vs DESIGN.md tokens --p-graphite-950/--p-signal: keep, or swap (a swap needs a fix freeze first)",
+    "Run-log WAIT/SECURITY records since the last committed one are still not committed: byte-identical copies fail the HL-002 schema test (v2 only)",
+    "Deny list did not load in this run (canary echoed; session started in /home/claude, which has no settings file with the canary rule)"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list check (optional, records on main): session started in /home/claude (no .claude/settings.json there); `echo hl-deny-list-canary` printed the text, so not testable from this start directory. Slot 21: evening §6 follows. Committed as schema v2 (HL-002 Ajv accepts only v2). tokens = npm run usage on lead + subagent transcripts before the run record (later turns not counted): {\"tokens\":16774923,\"input_tokens\":308,\"output_tokens\":85678,\"cache_creation_input_tokens\":861663,\"cache_read_input_tokens\":15827274,\"messages\":143,\"files\":8,\"skipped_lines\":0,\"cost_usd\":null,\"cost_source\":\"no measured cost in the transcript: read the figure from the account's billing usage/cost report for the run's time window; tokens are never priced here\"}. not_claimed: cost_usd (no measured USD in cloud transcripts); favicon legibility at 16 px judged from source only; which element spawns the extra trace frame is an ASSUMPTION (favicon link), not isolated; fix-pass verify run by the lead (checks re-run), no second test-engineer verify dispatch; UI suites were not re-run after the fix pass (comment + test only). flakes: none (hl-009 LCP failure was a regression, 3/3 head vs 0/3 base, fixed in ba10c88). fix_freeze_shas: none. exemption: 6428754 comment-only. review.unflagged_claims: null.",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 174
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0.0155
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": 32
+    },
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip_main_route",
+      "unit": "KB",
+      "value": 183.8
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-13T2139-HL-024-r2.md",
+    "verdict": "CONDITIONAL"
+  },
+  "run_date": "2026-11-13",
+  "schema_version": 2,
+  "slot": "2139",
+  "started_at": "2026-11-14T05:39:29Z",
+  "stop_rule": {
+    "evidence": "HL-020 merged (#49) but no recurring check on Will Mac is visible to a cloud run; P1 window ended Nov 8 (PLAN.md Stop rule P1)",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 822,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-024",
+  "tokens": 16774923
+}

@@ -1,0 +1,227 @@
+{
+  "base": "run/2026-11-03-1839-HL-005",
+  "branch": "run/2026-11-05-1839-HL-009",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 1,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff"
+    },
+    {
+      "exit": 0,
+      "name": "frozen diff"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen test passed"
+    },
+    {
+      "exit": 0,
+      "name": "npm run test:it"
+    },
+    {
+      "exit": 0,
+      "name": "npm run test:ui"
+    },
+    {
+      "exit": 0,
+      "name": "npm run test:a11y"
+    },
+    {
+      "exit": 0,
+      "name": "npm run perf"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green-except-inherited-lint",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no-regression-no-blown-budget",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review-r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "fixed-r1-required-fixes-1-2",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no-regression-no-blown-budget",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review-r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-06T03:03:24Z",
+  "freeze_sha": "d435b67442aaeac9c1e78cfe76bcf0b1b49c8d18",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "140 min from ~/hl-run/start · 8 dispatches · 1 fix pass",
+    "goal": "HL-009: npm run test:it, test:ui (Playwright, system Chrome), test:a11y (@axe-core/playwright) and perf each exit 0 on the HL-001 page; perf prints perf[] JSON with every TESTING.md budget metric, unmeasurable ones null with a reason",
+    "step": "one task, one branch, one draft PR stacked on #15",
+    "stop": "success: frozen tests red then green, all checks exit 0 except the inherited HL-003 lint line, reviewer PASS; give up: 130/140-minute time box, or not PASS after one fix pass (PR labeled needs:will)",
+    "verifier": "frozen tests in tests/frozen/HL-009.json (read at the freeze commit); npm ci, lint, typecheck, test, build; main scan_sensitive.py --diff origin/run/2026-11-03-1839-HL-005..HEAD; frozen-diff exit 0; every frozen test passed in the Vitest JSON report"
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "scripts/perf-lib.ts:57",
+    "went_red": true
+  },
+  "needs_will": [
+    "r2 CONDITIONAL F1: metricsFromTrace has no unit test; mutant at scripts/perf-lib.ts:67 survived (CLS silently 0). Take the fix next run or accept the gap",
+    "LCP/CLS trace event names are an ASSUMPTION citing Lighthouse trace-processor, not a Chromium spec",
+    "Inherited lint error tests/hl-003.claude-code-fixtures.test.ts:251 (frozen HL-003 file) still blocks DoD 3: re-freeze approved, or waive",
+    "WAIT/SECURITY records from the Run log were not committed: they fail the tip schema until PR #19 lands",
+    "Schema conflict: perf[] entries in runs/ may not carry reason (HL-002 schema additionalProperties) but HL-009 requires reason on null values; needs a runs/SCHEMA.md law change plus schema update, or a different place for reasons"
+  ],
+  "notes": "goal_cmd: unavailable. deny-list check: not testable from this start directory (reviews/2026-11-05T1839-deny-list-check.md). add_repo/register_repo_root not offered; repo pre-cloned, ~/harness-lab symlinked. Dispatch prompts pointed each role at its brief exported from origin/main (~/hl-run/brief-*.md) instead of pasting the text inline. Design critic not dispatched: no file under src/ changed. faker install exit 0, names: on. perf[] reasons dropped from this record: the HL-002 schema forbids a reason field on perf entries (additionalProperties), while HL-009 frozen test requires one on null values; ingest_10k_events null because no 10,000-event fixture or benchmark exists; regression_tolerance null because no merged-run perf baseline exists.",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 154
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": 48
+    },
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip_main_route",
+      "unit": "KB",
+      "value": 170.4
+    },
+    {
+      "budget": 2000,
+      "machine": "cloud-runner",
+      "metric": "ingest_10k_events",
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "budget": 20,
+      "machine": "cloud-runner",
+      "metric": "regression_tolerance",
+      "unit": "percent",
+      "value": null
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-05T1839-HL-009-r2.md",
+    "verdict": "CONDITIONAL"
+  },
+  "run_date": "2026-11-05",
+  "schema_version": 2,
+  "slot": "1839",
+  "started_at": "2026-11-06T02:39:14Z",
+  "stop_rule": {
+    "evidence": "P1 stop rule is checkable from Fri Nov 6 (PLAN.md); no P1 task has started",
+    "project": "P1",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 160,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 160,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-009",
+  "tokens": null
+}

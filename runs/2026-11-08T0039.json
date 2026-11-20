@@ -1,0 +1,64 @@
+{
+  "base": "run/2026-11-05-2139-HL-008",
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules main missing-count (printed 0)"
+    },
+    {
+      "exit": 0,
+      "name": "faker install"
+    },
+    {
+      "exit": 0,
+      "name": "scan --stdin started comment"
+    },
+    {
+      "exit": 0,
+      "name": "check-runs on 5 open heads (all checks+guard success)"
+    },
+    {
+      "exit": 0,
+      "name": "scan --stdin finished comment"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [],
+  "finished_at": "2026-11-08T08:40:14Z",
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "WAIT",
+  "mutation_check": null,
+  "needs_will": [
+    "5/5 cap: PRs #12, #14, #15, #20, #21 all CI green (checks+guard success, heads unchanged) and labeled needs:will; merge bottom-up from #12 with a merge commit, or comment on them",
+    "Sun Nov 8 gates due today: demo hosting choice, P1 UAT / changed-a-decision call"
+  ],
+  "notes": "goal_cmd: unavailable; add_repo/register_repo_root not in toolset, repo pre-cloned at /home/claude/harness-lab, ~/harness-lab symlinked this run; deny-list check: session started in /home/claude (cwd later reported /home/claude/harness-lab, which has the canary rule, count 1); echo hl-deny-list-canary echoed its text, so the deny list did not load for this session; no Will comments on open run PRs or Daily status; no open security issues; no hold; stack linear 12-14-15-20-21; slot 00, no SECURITY or evening work. Run made zero dispatches.",
+  "perf": [],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-08",
+  "schema_version": 2,
+  "slot": "0039",
+  "started_at": "2026-11-08T08:39:05Z",
+  "stop_rule": {
+    "evidence": "PLAN.md stop rule P1.1 needs the recurring Mac check from Fri Nov 6; HL-017 and HL-020 not started, builds blocked at the 5/5 cap; P1 window ends today, Sun Nov 8",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [],
+  "task_id": null,
+  "tokens": null
+}

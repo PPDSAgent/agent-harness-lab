@@ -1,0 +1,229 @@
+{
+  "base": "main",
+  "branch": "run/2026-11-08-2139-HL-010a",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff"
+    },
+    {
+      "exit": 0,
+      "name": "frozen diff"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen test passed (vitest json + playwright json)"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-010a/home-1440-light.png",
+      "screens/HL-010a/home-1440-dark.png",
+      "screens/HL-010a/home-390-light.png",
+      "screens/HL-010a/home-390-dark.png",
+      "screens/HL-010a/runs-codex-1440-light.png",
+      "screens/HL-010a/runs-claudecode-390-dark.png",
+      "screens/HL-010a/runs-filter-focus-1440-light.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "perf-regression-over-tolerance",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "perf-regression-over-tolerance",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-09T06:10:42Z",
+  "freeze_sha": "97d6561ae6935ad26fd305976c4810c70759a9c4",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "2h20m whole-run box · 8 dispatches · 1 fix pass",
+    "goal": "HL-010a — runs list (first part of epic HL-010) over the 90 synthetic fixture runs, from the normalized model, on the app's one route.",
+    "step": "one task part (HL-010a), one draft PR on main; HL-010b (run detail + step timeline) next.",
+    "stop": "success = frozen tests red before, green after; all checks exit 0; reviewer PASS. Give up = not PASS after the one fix pass (open PR with needs:will), or the 140-minute box (open PR with wip).",
+    "verifier": "frozen tests in tests/frozen/HL-010a.json at the freeze commit (2 Vitest files, 1 Playwright spec), npm run lint/typecheck/test/build, main's scan_sensitive.py --diff origin/run/2026-11-05-1839-HL-009..HEAD, frozen diff exit 0, every frozen test passed in the Vitest and Playwright JSON reports."
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/runs-list.tsx:31",
+    "went_red": true
+  },
+  "needs_will": [
+    "Perf regression vs the HL-009 record over the proposed 20% tolerance: LCP 154 -> 282 ms (+83%), initial JS 170.4 -> 234.8 KiB (+38%); budgets still met (vite 244.62 kB gzip vs 250). Waive, or ask for the fixtures to move out of the first download",
+    "Review r2 CONDITIONAL only on that waiver; formatter test gap goes to HL-010b's freeze",
+    "SEC-24 (issue #24, high) is first in line but its fix is in .github/workflows/guard.yml, a law path: needs Will's law/* PR"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not offered; repo pre-cloned at /home/claude/harness-lab, ~/harness-lab symlinked. deny-list check: not testable from this start directory (reviews/2026-11-08T2139-deny-list-check.md). faker install exit 0, names: on. Lead error: the freeze dispatch's task-block placeholder was not filled, so the test engineer froze from the interface contract in the prompt; reviewer r1 confirmed the frozen tests cover Accept 1-4. Builder edited the non-frozen e2e/home.spec.ts:25 locator (needed: two tables on /). Committed 20 WAIT/SECURITY records from the Run log (2026-11-06T0039 .. 2026-11-08T1839). Perf values are lab numbers from the cloud runner. PR #20 merged at 05:41:59Z during this run, so the PR opened against main (first attempt with base run/2026-11-05-1839-HL-009 got HTTP 422, branch deleted).",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud runner (lab)",
+      "metric": "lcp",
+      "unit": "ms",
+      "value": 282
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud runner (lab)",
+      "metric": "cls",
+      "unit": "score",
+      "value": 0.0001
+    },
+    {
+      "budget": 200,
+      "machine": "cloud runner (lab)",
+      "metric": "inp",
+      "unit": "ms",
+      "value": 48
+    },
+    {
+      "budget": 250,
+      "machine": "cloud runner (lab)",
+      "metric": "initial_js_gzip",
+      "unit": "KiB",
+      "value": 234.8
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": 27,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-08T2139-HL-010a-r2.md",
+    "verdict": "CONDITIONAL"
+  },
+  "run_date": "2026-11-08",
+  "schema_version": 2,
+  "slot": "2139",
+  "started_at": "2026-11-09T05:39:37Z",
+  "stop_rule": {
+    "evidence": "PLAN.md P1.1 needs the recurring Mac check from Fri Nov 6; HL-017 and HL-020 not built; no check has run, so it cannot trip, but the P1 window ends tonight (Sun Nov 8)",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 188,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-010a",
+  "tokens": null
+}

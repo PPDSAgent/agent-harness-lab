@@ -1,0 +1,58 @@
+{
+  "base": null,
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules/branches/main missing protections"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [
+    "https://github.com/PPDSAgent/harness-lab/issues/3#issuecomment-6965444189"
+  ],
+  "dispatches": [],
+  "exemption": null,
+  "finished_at": "2026-11-18T02:41:45Z",
+  "fix_freeze_shas": [],
+  "flakes": [],
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "WAIT",
+  "mutation_check": null,
+  "needs_will": [
+    "#66 checks red on 0ea724b (completed/failure); stack-red comment already stands on #66; needs:will with no new comment from Will",
+    "Will direction 6965444189 (replace skeleton page, proposed HL-076) is blocked by main frozen tests HL-022a A5 and HL-022b B5, which fail on any src/ change; changing them is Will call"
+  ],
+  "not_claimed": [
+    "no checks re-run locally; CI states read from check-runs API",
+    "A5/B5 failing on a src/ change is read from the test source on main, not run this session",
+    "P2 stop-rule status not re-tested in a host; read from PLAN.md:128-131 against the date"
+  ],
+  "notes": "WAIT: stack red (#66 checks=failure on 0ea724b). Open run PRs 1/5 (#62, #63, #65 merged 2026-11-18T00:05Z). One new Daily status direction acked. add_repo tool not exposed this session; repo already cloned at /home/claude/harness-lab (symlinked to ~/harness-lab), fetched, unshallowed (was shallow). Deny-list-check records already on main; canary echoed anyway from start dir /home/claude, which has no settings file: not testable from this start directory. goal_cmd: unavailable",
+  "perf": [],
+  "phase": "2-forecast-mcp-app",
+  "pr_number": null,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-17",
+  "schema_version": 3,
+  "slot": "1839",
+  "started_at": "2026-11-18T02:39:33Z",
+  "stop_rule": {
+    "evidence": "PLAN.md:128-131 day-1 deadline Mon Nov 9 passed; HL-030a (#66) not rendering in any host",
+    "project": "P2",
+    "status": "tripped"
+  },
+  "suites": [],
+  "task_id": null,
+  "tokens": null
+}

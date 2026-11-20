@@ -1,0 +1,23 @@
+{
+    "_synthetic": "SYNTHETIC fixture for HL-027 (cost-export importer). Labels only; hand-written, no seed.",
+    "run_id": "run-label-01",
+    "project": "p-label",
+    "started_at": "2026-11-10T10:00:00Z",
+    "finished_at": "2026-11-10T12:00:00Z",
+    "tokens": {
+        "input": 1,
+        "output": 2,
+        "nested": [
+            1,
+            {
+                "k": "v"
+            }
+        ]
+    },
+    "cost_usd": null,
+    "notes": [
+        "a",
+        "b"
+    ],
+    "flag": true
+}

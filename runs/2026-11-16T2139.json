@@ -1,0 +1,157 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-16",
+  "slot": "2139",
+  "started_at": "2026-11-17T05:39:13Z",
+  "finished_at": "2026-11-17T06:44:03Z",
+  "mode": "BUILD",
+  "task_id": "HL-022a",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-16-2139-HL-022a",
+  "base": "run/2026-11-16-1839-HL-027",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-022a (split of HL-022 P1 ship gate): red-team ship pass committed under security/ (report, threat model, attack tests) and uat/p1.md for Will; HL-022b = launch kit",
+    "verifier": "frozen tests/hl-022a.ship-gate.test.ts (manifest tests/frozen/HL-022a.json at c518477); npm ci, lint, typecheck, vitest, build; main scan_sensitive --diff origin/run/2026-11-16-1839-HL-027..HEAD; frozen check; every frozen test passed; fresh reviewer r1",
+    "step": "one task part, one draft PR stacked on #62",
+    "stop": "success: all checks exit 0 and reviewer PASS, pushed; give up: tests not red for the right reason, frozen check != 0, or the 130/140-min box",
+    "budget": "whole-run box 140 min from start · 9 dispatches · 1 fix pass (used 5 dispatches; fix pass unused)"
+  },
+  "freeze_sha": "c518477",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected: 19 of 20 failed (files missing); A5 src-untouched passes by construction",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "red-team",
+      "duty": "ship-pass (build)",
+      "model": "opus",
+      "outcome": "security/reports/2026-11-16.md, threat-model.md, 4 attack test files (45 tests); 0 critical, 0 high, 2 medium, 5 low; seeded 5/5",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "uat (build)",
+      "model": "sonnet",
+      "outcome": "uat/p1.md, 12 steps; A4 9/9 green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no regression: baseline 880/880, head 945/945, 65 new",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "PASS r1",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "main ruleset rules missing (count)",
+      "exit": 0
+    },
+    {
+      "name": "faker==40.44.0 install",
+      "exit": 0
+    },
+    {
+      "name": "npm ci",
+      "exit": 0
+    },
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npx vitest run (json)",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive (main) --diff origin/run/2026-11-16-1839-HL-027..HEAD",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "regression",
+      "exit": 0,
+      "passed": 945,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/lib/cost-import.ts:95",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "path": "reviews/2026-11-16T2139-HL-022a-r1.md",
+    "fix_pass_used": false
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": {
+    "issue": null,
+    "critical": 0,
+    "high": 0,
+    "medium": 2,
+    "low": 5,
+    "seeded_caught": 5,
+    "seeded_total": 5
+  },
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "P1 window ended Nov 8; ship gate part a built (this run), HL-022b launch kit and Will's UAT outstanding"
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "two medium red-team findings (ingest terminal control chars; token over-count per message.id) have no issue: decide whether they block calling P1 shipped",
+    "run uat/p1.md (steps 9-12 on your Mac only)",
+    "v3 run-record keys vs v2 JSON Schema mismatch still blocks committing Run log WAIT/SECURITY records"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list-check records already on main, step 1a skipped. Briefs given to agents as files extracted verbatim from origin/main (~/hl-run/briefs/), not pasted inline. SEC-30 and SEC-58 skipped: their fixes are law paths (open law PRs #59-#61). HL-022 split into HL-022a (this) and HL-022b (launch kit). Verify and review ran concurrently; verify was read-only and committed nothing. not_claimed: UI UAT steps 1-6 not run in a browser; UAT steps 9-12 (real data, Mac only); semgrep registry rules never ran (metrics off, proxy 403), local ruleset only; npm run typecheck does not cover security/ (attack files typechecked separately by red team and reviewer); performance not re-measured (no src change); dispatch times; tokens and cost. flakes: none observed. exemption: none; fix_freeze_shas: none. Written at schema_version 2 for the same reason as runs 0040, 0939 and 1839; Run log WAIT/SECURITY records not committed."
+}

@@ -1,0 +1,210 @@
+{
+  "base": "run/2026-11-05-2139-HL-008",
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules main missing-count (printed 0)"
+    },
+    {
+      "exit": 0,
+      "name": "faker install"
+    },
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 1,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "test:it"
+    },
+    {
+      "exit": 0,
+      "name": "test:ui"
+    },
+    {
+      "exit": 0,
+      "name": "test:a11y"
+    },
+    {
+      "exit": 0,
+      "name": "perf"
+    },
+    {
+      "exit": 0,
+      "name": "npm audit --omit=dev"
+    },
+    {
+      "exit": 1,
+      "name": "npm audit"
+    },
+    {
+      "exit": 0,
+      "name": "pip-audit"
+    },
+    {
+      "exit": 2,
+      "name": "semgrep --config auto"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive --all (main)"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive --self-test (main)"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "security-pass",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "0 critical, 0 high, 8 medium, 33 low",
+      "role": "red-team",
+      "started_at": null
+    },
+    {
+      "duty": "nightly-regression",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no regressions (175/175)",
+      "role": "test-engineer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-06T11:57:45Z",
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "SECURITY",
+  "mutation_check": null,
+  "needs_will": [
+    "5/5 cap: all open run PRs red at lint on frozen tests/hl-003.claude-code-fixtures.test.ts:251",
+    "M8: a11y/UI e2e specs are builder-written and unfrozen"
+  ],
+  "notes": "goal_cmd: unavailable; add_repo/register_repo_root not in toolset, repo was pre-cloned at /home/claude/harness-lab (symlinked to ~/harness-lab); deny-list check: start dir /home/claude had no .claude/settings.json (not testable from start dir); in repo dir the canary echoed, i.e. not loaded",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 153
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main",
+      "unit": "ms",
+      "value": 56
+    },
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip",
+      "unit": "KB",
+      "value": 170.4
+    },
+    {
+      "budget": 2000,
+      "machine": "cloud-runner",
+      "metric": "ingest_10k_events",
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "phase": "0-foundations",
+  "pr_number": null,
+  "redteam": {
+    "critical": 0,
+    "high": 0,
+    "issue": null,
+    "low": 33,
+    "medium": 8,
+    "seeded_caught": 3,
+    "seeded_total": 5
+  },
+  "review": null,
+  "run_date": "2026-11-06",
+  "schema_version": 2,
+  "slot": "0339",
+  "started_at": "2026-11-06T11:39:37Z",
+  "stop_rule": {
+    "evidence": "P1 stop rule checkable from Fri Nov 6 (PLAN.md) but HL-020 (recurring check on Will Mac) not built; no checks have run",
+    "project": "P1",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 175,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 3,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "task_id": null,
+  "tokens": null
+}

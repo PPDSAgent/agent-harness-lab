@@ -1,0 +1,5 @@
+{"type":"header","note":"SYNTHETIC fixture for HL-026 run usage meter; labels only, cwd /Users/demo/proj"}
+this is not json
+{"type":"assistant","message":{"id":"msg-06","usage":
+{"type":"user","message":{"role":"user","content":"synthetic prompt from user-01"}}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-07","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":2,"output_tokens":3,"cache_creation_input_tokens":4,"cache_read_input_tokens":5}}}

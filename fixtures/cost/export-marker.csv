@@ -1,0 +1,4 @@
+# SYNTHETIC cost export for HL-027, privacy marker in description. Layout is an ASSUMPTION.
+starting_at,ending_at,amount,currency,description
+2026-11-10T10:00:00Z,2026-11-10T11:00:00Z,1.5,USD,PRIVACY-MARKER-7f3a9c
+2026-11-10T11:00:00Z,2026-11-10T12:00:00Z,2.5,USD,"PRIVACY-MARKER-7f3a9c, again"

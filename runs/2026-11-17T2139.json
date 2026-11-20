@@ -1,0 +1,192 @@
+{
+  "schema_version": 3,
+  "run_date": "2026-11-17",
+  "slot": "2139",
+  "started_at": "2026-11-18T05:39:18Z",
+  "finished_at": "2026-11-18T06:29:38Z",
+  "mode": "BUILD",
+  "task_id": "HL-050",
+  "phase": "3-personal-agent",
+  "branch": "run/2026-11-17-2139-HL-050",
+  "base": "run/2026-11-17-0939-HL-030a",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-050 P3 eval freeze: 20 SYNTHETIC P3 eval cases frozen in evals/p3/cases.jsonl before any P3 code, plus a tested scorer that computes Will's headline metric (share of claims with a correct source) and the four secondary metrics (time to verify; planted wrong/unsupported claims caught; first-time approval rate; rubric score) from a recorded-response run file, and a baseline-vs-candidate delta report with n, per-case table and every case where the candidate is worse.",
+    "verifier": "tests/frozen/HL-050.json paths (red at freeze, green after); npm run lint, npm run typecheck, npm test, npm run build; main's scan_sensitive.py --diff origin/run/2026-11-17-0939-HL-030a..HEAD; the frozen check (daily-run 3.5) exit=0; every frozen Vitest file fully passed in the JSON report.",
+    "step": "one task, one PR stacked on #66 (HL-030a).",
+    "stop": "success = all checks exit 0, frozen check exit=0, reviewer PASS; give up = tests cannot be made red for the right reason, a frozen test needs editing, or the time box (130 min no new dispatch, 140 min commit/push) hits -> wip or needs:will.",
+    "budget": "140 min run box · 9 dispatches · 1 fix pass"
+  },
+  "freeze_sha": "be08da02ca78e510352fdde21d36280284d34061",
+  "fix_freeze_shas": [
+    "e5ae2efbb132702709bb0f2c063f00f008cee823"
+  ],
+  "exemption": null,
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no-regression; 1 pre-existing flake; 1 of 3 mutants caught",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r1",
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "fix freeze 1",
+      "model": "sonnet",
+      "outcome": "red-as-expected (3 red, 4 coverage pins green)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "fix 1",
+      "model": "sonnet",
+      "outcome": "green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r2",
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive (main) --diff",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "vitest full (json)",
+      "exit": 1
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    },
+    {
+      "name": "rules/branches/main missing protections",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional (hl-050)",
+      "exit": 0,
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "regression (full vitest at ad2d565)",
+      "exit": 1,
+      "passed": 1074,
+      "failed": 1,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/evals/p3/score.ts:167",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "CONDITIONAL",
+    "path": "reviews/2026-11-17T2139-HL-050-r2.md",
+    "fix_pass_used": true,
+    "unflagged_claims": null
+  },
+  "not_claimed": [
+    "live model arm (recorded responses only, no API key)",
+    "no eval run exists yet",
+    "CI result on the pushed head (pending at record time)",
+    "verify table not re-dispatched after fix 1; lead's full run stands in",
+    "dispatch start/finish times not recorded",
+    "older WAIT/SECURITY records on the Run log before 2026-11-17T1238 that are missing from runs/ were not committed"
+  ],
+  "flakes": [
+    {
+      "test": "tests/hl-021b.run-detail-evidence.component.test.tsx::a Team filter button exists, unpressed at first",
+      "reruns_base": 5,
+      "fails_base": 5,
+      "reruns_head": 3,
+      "fails_head": 2,
+      "classified": "flake",
+      "quarantine": null
+    }
+  ],
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P3",
+    "status": "not-yet-checkable",
+    "evidence": "PLAN.md Stop rule P3: needs prototype plus one day and an eval run; neither exists. P2 day-1 rule tripped (deadline Nov 9 passed, #66 not rendering in a host)."
+  },
+  "limits_hit": null,
+  "tokens": 15127144,
+  "cost_usd": null,
+  "needs_will": [
+    "r2 CONDITIONAL: F5 cases.jsonl lacks a SYNTHETIC header string and is hand-authored, not seeded-script generated (frozen; Will's call)",
+    "green-at-freeze coverage pins in a fix freeze: daily-run 4.1b silent; law PR is Will's",
+    "HL-076 skeleton page blocked by frozen HL-006 (h1 /request latency/) and HL-001 (placeholderSeries, one Recharts chart) tests",
+    "hl-021b Team-filter timing flake: quarantine needs a fix freeze on HL-021b",
+    "cost_usd source: Will's Anthropic usage export, read on his Mac"
+  ],
+  "notes": "add_repo tool not exposed; repo was already cloned at /home/claude/harness-lab (symlinked to ~/harness-lab), unshallowed. Deny-list canary echoed (did not load) from start dir with canary count 1; deny-list-check record already on main. goal_cmd: unavailable. Planted claims: 15 (commit 1908395 message says 13). §6 evening runs after publish. Usage: tokens from npm run usage over the lead transcript and 7 subagent transcripts; cost_usd null (tool printed no cost); turns after the usage step are not counted."
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-17",
+  "slot": "0939",
+  "started_at": "2026-11-17T17:39:16Z",
+  "finished_at": "2026-11-17T18:04:23Z",
+  "mode": "BUILD",
+  "task_id": "HL-030a",
+  "phase": "2-forecast-mcp-app",
+  "branch": "run/2026-11-17-0939-HL-030a",
+  "base": "run/2026-11-17-0039-HL-022b",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-030a (P2 spike part a): MCP App server with a show_series_chart tool and a self-contained ui:// chart view, proven through the SDK in-memory client and jsdom",
+    "verifier": "frozen tests/hl-030a.{server,view.component,served-view,initial-bundle}.test.ts (manifest tests/frozen/HL-030a.json at de34fba); npm ci, lint, typecheck, vitest, build; main scan_sensitive --diff origin/run/2026-11-17-0039-HL-022b..HEAD; frozen check; every frozen test passed; fresh reviewer",
+    "step": "one task part (HL-030 split into a/b), one draft PR stacked on #65",
+    "stop": "success: all checks exit 0 and reviewer PASS; give up: tests not red for the right reason, frozen check != 0, an already-frozen test that must change (Will), or the 130/140-min box",
+    "budget": "140 min from 17:39:16Z; 9 dispatches; 1 fix pass (used 2 dispatches; stopped before verify/review)"
+  },
+  "freeze_sha": "de34fba",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected: 3 files fail to import missing src/mcp/series-chart modules; initial-bundle 2 of 3 fail",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "commits deab2d2, 03b3546; reported full vitest 1030/1030 but the lead re-run shows 1028/1030",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "main ruleset rules missing (count)",
+      "exit": 0
+    },
+    {
+      "name": "faker==40.44.0 install",
+      "exit": 0
+    },
+    {
+      "name": "npm ci",
+      "exit": 0
+    },
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npx vitest run (json)",
+      "exit": 1
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive (main) --diff origin/run/2026-11-17-0039-HL-022b..HEAD",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "regression",
+      "exit": 1,
+      "passed": 1028,
+      "failed": 2,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": [
+        "tests/hl-022a.ship-gate.test.ts A5 src/ is unchanged since the start commit",
+        "tests/hl-022b.launch-kit.test.ts B5 src/ is unchanged since the start commit"
+      ]
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": null,
+  "mutation_check": null,
+  "review": null,
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": {
+    "issue": null,
+    "critical": null,
+    "high": null,
+    "medium": null,
+    "low": null,
+    "seeded_caught": null,
+    "seeded_total": null
+  },
+  "stop_rule": {
+    "project": "P2",
+    "status": "tripped",
+    "evidence": "PLAN.md P2 day-1 rule: not rendering in two MCP Apps hosts by Mon Nov 9; nothing was built for P2 by then (STATUS.md on main). Today is Nov 17 and HL-030a is the first P2 code; applying the rule (component + write-up) is Will's call"
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "Frozen tests HL-022a A5 (tests/hl-022a.ship-gate.test.ts:321-329) and HL-022b B5 (tests/hl-022b.launch-kit.test.ts:405-413) diff START_COMMIT..HEAD over src/, so any later commit touching src/ turns them red, on this stack and on main after #63/#65 merge. Changing them is your call (daily-run 3.5).",
+    "P2 stop rule tripped by date: keep building HL-030 as the spike, or ship as a standalone component plus write-up"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Step 1a canary: session start dir /home/claude (no .claude/settings.json there), clone canary count 1, echo printed hl-deny-list-canary: not testable from this start directory; a deny-list-check record is already on main. SEC-30 and SEC-58 skipped: their fixes are law paths (law PRs #59-#61 open). #62, #63, #65 skipped for FIX: needs:will with no Will comment, checks+guard success; stack not red. HL-022 parts in flight, so HL-030 was first eligible; split into HL-030a/b. Stopped after build: regression red in two other tasks frozen tests; no verify, design critic or reviewer dispatched. not_claimed: that the view renders in any real MCP Apps host; that the hand-rolled view client conforms to the MCP Apps spec beyond the frozen test host; code quality (no review); performance; tokens and cost; dispatch times. flakes: none observed. Builder note: its vitest 1030/1030 was not reproduced (likely run before its commit; A5/B5 diff HEAD, not the worktree). Written at schema_version 2 as earlier runs did (v3 vs JSON Schema mismatch)."
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-16",
+  "slot": "1839",
+  "started_at": "2026-11-17T02:39:20Z",
+  "finished_at": "2026-11-17T03:12:55Z",
+  "mode": "BUILD",
+  "task_id": "HL-027",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-16-1839-HL-027",
+  "base": "main",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-027 cost-export importer: npm run cost reads an Anthropic usage/cost export CSV (layout ASSUMPTION) and fills each run record cost_usd from rows inside its started_at-finished_at window; null with a reason on no match, ambiguity or no finished_at; never prices tokens",
+    "verifier": "frozen tests/hl-027.cost-import.test.ts + fixtures/cost (manifest tests/frozen/HL-027.json at 460cb7a); npm ci, lint, typecheck, vitest, build; main scan_sensitive --diff origin/main..HEAD; frozen check; every frozen test passed; fresh reviewer r1",
+    "step": "one task, one draft PR on main",
+    "stop": "success: all checks exit 0 and reviewer PASS, pushed; give up: tests not red for the right reason, frozen check != 0, or the 130/140-min box",
+    "budget": "whole-run box 140 min from start · 9 dispatches · 1 fix pass (used 4 dispatches; fix pass unused)"
+  },
+  "freeze_sha": "460cb7a",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected: 43 of 44 failed (module src/cli/cost missing; no cost script); C0 fixture check passed",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "1fbcacf: src/lib/cost-import.ts, src/cli/cost.ts, package.json cost script; 44/44 green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no blocking defect; minor: BOM before a # comment line not skipped; negative amounts accepted",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "PASS r1",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "main ruleset rules missing (count)",
+      "exit": 0
+    },
+    {
+      "name": "faker==40.44.0 install",
+      "exit": 0
+    },
+    {
+      "name": "npm ci",
+      "exit": 0
+    },
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npx vitest run (json)",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive (main) --diff origin/main..HEAD",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    },
+    {
+      "name": "npm run usage on this run transcripts",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "regression",
+      "exit": 0,
+      "passed": 879,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [
+    {
+      "metric": "cost_cli_10k_rows_wall",
+      "value": 490,
+      "unit": "ms",
+      "budget": null,
+      "machine": "cloud-runner"
+    }
+  ],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/lib/cost-import.ts:125",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "path": "reviews/2026-11-16T1839-HL-027-r1.md",
+    "fix_pass_used": false
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "P1 window ended Nov 8; HL-022 ship gate not built (STATUS.md on main)"
+  },
+  "limits_hit": null,
+  "tokens": 10623614,
+  "cost_usd": null,
+  "needs_will": [
+    "confirm the usage export real column names and whether amount is dollars or cents (or send the header row only)",
+    "14 WAIT/SECURITY records on the Run log since 2026-11-14T1239 fail validateRunRecord, and 2 are not schema-shaped; not committed (would turn tests that read runs/ red)"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Session started in /home/claude (no settings file with the canary rule), canary echoed: not testable from this start directory; deny-list-check records already on main so no new one. SEC-30 and SEC-58 skipped: their fixes are law paths (open law PRs #59-#61). Task HL-027 is a new id from Will direction issues/3#issuecomment-6882307428, acked earlier at run 1239 on 2026-11-14. Tokens from npm run usage on lead + 4 subagent transcripts at 03:12Z. not_claimed: the real Anthropic export column names and amount unit (layout is an ASSUMPTION; docs could not be fetched from the cloud session); a run against a real export (Will, on his Mac); per-test regression diff against the baseline (baseline record stores counts only); CI checks and guard on the PR head (not yet run when this record was written); dispatch start and finish times; tokens counted only up to 03:12Z; later lead turns not counted. flakes: none observed. exemption: none; fix_freeze_shas: none. Written at schema_version 2: the repo JSON Schema (HL-002, tests hl-002/hl-023) rejects v3 keys, which conflicts with runs/SCHEMA.md requiring not_claimed and flakes at v3; same choice as runs 0040 and 0939."
+}

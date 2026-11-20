@@ -1,0 +1,167 @@
+{
+  "base": "main",
+  "branch": "run/2026-11-03-0940-HL-002",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff"
+    },
+    {
+      "exit": 0,
+      "name": "frozen diff"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen test passed"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": "2026-11-03T17:42:08Z"
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no-regression-no-blown-budget",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review-r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "PASS",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-03T17:49:47Z",
+  "freeze_sha": "4d73a1330daf4adbf0c5b84c74ad39b9c0446364",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "130/140 min time box · 8 dispatches · 1 fix pass",
+    "goal": "HL-002 run-record JSON Schema and validator meet both Accept lines",
+    "step": "one task, one PR",
+    "stop": "success: all checks exit 0 and reviewer PASS; give up: still not PASS after one fix pass -> PR labeled needs:will, or 130 min -> wip",
+    "verifier": "frozen tests/hl-002.run-record.test.ts (manifest tests/frozen/HL-002.json at freeze); npm ci, lint, typecheck, test, build; main scanner --diff origin/main..HEAD; frozen diff vs freeze; every frozen test passed in vitest JSON"
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "schemas/run-record.schema.json:481",
+    "went_red": true
+  },
+  "needs_will": [],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root tools not present in this session; repo pre-attached and pre-cloned at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list canary: session started in /home/claude (no settings file) -> not testable from this start directory; echo printed; record reviews/2026-11-03T0940-deny-list-check.md. No UI change: design critic not dispatched, no screens. LCP/CLS/INP null: no Playwright harness (HL-009). Committed SECURITY record runs/2026-11-03T0339.json from Run log #5.",
+  "perf": [
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip",
+      "unit": "kB",
+      "value": 174.46
+    },
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": null
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "phase": "0-foundations",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": false,
+    "path": "reviews/2026-11-03T0940-HL-002-r1.md",
+    "verdict": "PASS"
+  },
+  "run_date": "2026-11-03",
+  "schema_version": 2,
+  "slot": "0940",
+  "started_at": "2026-11-03T17:40:13Z",
+  "stop_rule": {
+    "evidence": null,
+    "project": "P0",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 60,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 60,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-002",
+  "tokens": null
+}

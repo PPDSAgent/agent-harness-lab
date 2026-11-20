@@ -1,0 +1,125 @@
+{
+  "base": "run/2026-11-13-2309-HL-024",
+  "branch": "run/2026-11-14-0040-HL-025",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "main ruleset rules missing (count)"
+    },
+    {
+      "exit": 0,
+      "name": "faker==40.44.0 install"
+    },
+    {
+      "exit": 0,
+      "name": "start commit c6e0c9f: npm ci / lint / typecheck / scan"
+    },
+    {
+      "exit": 1,
+      "name": "fix freeze red (vitest tests/hl-025-fix1.playwright-summary.test.ts at ba16717)"
+    },
+    {
+      "exit": 1,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "npx vitest run (full, json)"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen vitest test passed"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff origin/run/2026-11-13-2309-HL-024..HEAD"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "ba16717: 4 tests, 2 red for the right reason (stderr has no failure summary); file has an unused import (lint error, line 10)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "1fdf5d6: e2e-support/stderr-failure-reporter.ts + reporter in playwright.config.ts + tsconfig.node.json include; frozen tests 4/4",
+      "role": "builder",
+      "started_at": null
+    }
+  ],
+  "finished_at": null,
+  "freeze_sha": "ba16717e8e6cbf6ad9a730f856ea497322b13439",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "whole-run box from started_at · fix freeze, build, review",
+    "goal": "make the red checks on #56 diagnosable: Playwright failure summary on stderr so CI names the failing a11y test (CI failure not reproduced locally)",
+    "step": "one FIX, diagnostic only",
+    "stop": "success: all checks 0, reviewer PASS, pushed; give up: freeze not red for the right reason, a frozen file blocks a check, or the time box",
+    "verifier": "frozen tests/hl-025-fix1.playwright-summary.test.ts (tests/frozen/HL-025-fix1.json, red at ba16717); frozen check; every frozen test passed; lint, typecheck, npm test, build, main scan --diff"
+  },
+  "mode": "FIX",
+  "mutation_check": {
+    "file_line": "e2e-support/stderr-failure-reporter.ts:51",
+    "went_red": true
+  },
+  "needs_will": [
+    "Frozen test tests/hl-025-fix1.playwright-summary.test.ts:10 imports mkdirSync and never uses it: npm run lint exits 1, and CI runs lint before npm test, so the diagnostic cannot run in CI until that one import is removed. Editing a frozen test is Will call (daily-run §3.5).",
+    "Root cause of the CI-only test:a11y failure is still unknown; not reproduced locally (plain, under CPU load, with DejaVu Sans forced).",
+    "Deny list did not load (canary echoed)."
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list: pwd at check time /home/claude/harness-lab (session started in /home/claude), canary rule count 1, canary echoed, so the deny list did not load. Loop header (full): Goal: make the red `checks` on #56 diagnosable and then green. CI fails `tests/hl-009.harness.test.ts > npm run test:a11y exits 0` (exit 1), but the assertion prints only stderr, and stderr holds only a Vite warning; the Playwright list reporter writes the failing test to stdout, which the frozen HL-009 test never prints. Not reproduced locally: CI=1 HL009_NESTED=1 a11y run exit=0 (27 passed) plain, under a CPU hog, and with DejaVu Sans forced as system-ui/sans-serif. This pass: `npm run test:a11y` (and the other Playwright projects) also write a failure summary (test title, project, first error lines) to stderr, so the next CI run names the failing test.\nVerifier: test engineer's fix freeze `tests/frozen/HL-025-fix1.json` (red on c6e0c9f, green after), frozen check (daily-run §3.5), every frozen test passed in its runner's report, npm run lint / typecheck / test / build, npm run test:a11y, main's scan_sensitive.py --diff; fresh reviewer -r2.\nStep: one FIX, diagnostic only; the root cause fix is the next FIX run once CI names the test.\nStop: success = all local checks exit 0, reviewer PASS, pushed; give up = fix freeze not red for the right reason, or the time box (130 min no new dispatch, 140 min publish).\nBudget: whole-run box from 17:39:11Z; dispatches: fix freeze, build, review (verify only if time), one more fix pass at most. No reviewer this run: stopped for Will at the lint error in the frozen fix test before review; r2 not written. not_claimed: CI green; root cause of the CI a11y failure; review verdict; tokens and cost not measured this run; verify table not run (only functional suite). flakes: none observed. Lead miss: the fix-freeze brief did not ask the test engineer to lint its file.",
+  "perf": [],
+  "phase": "1-observatory",
+  "pr_number": 56,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-14",
+  "schema_version": 2,
+  "slot": "0939",
+  "started_at": "2026-11-14T17:39:11Z",
+  "stop_rule": {
+    "evidence": "HL-020 merged (#49) but no recurring check on Will Mac is visible to a cloud run; P1 window ended Nov 8 (PLAN.md Stop rule P1)",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 834,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-025",
+  "tokens": null
+}

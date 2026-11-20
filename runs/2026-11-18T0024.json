@@ -1,0 +1,203 @@
+{
+  "schema_version": 3,
+  "run_date": "2026-11-18",
+  "slot": "0024",
+  "started_at": "2026-11-18T08:24:03Z",
+  "finished_at": "2026-11-18T08:56:49Z",
+  "mode": "BUILD",
+  "task_id": "HL-021b",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-18-0024-HL-021b",
+  "base": "main",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "per Will's direction (Daily status comment 6971843816 item 2), raise the timeout of the one `findByRole(\"button\", { name: \"Team\" })` wait in the \"a Team filter button exists, unpressed at first\" test (tests/hl-021b.run-detail-evidence.component.test.tsx:55) through an HL-021b fix freeze (tests/frozen/HL-021b-fix2.json). Change only that wait; the assertion stays the same.",
+    "verifier": "npm run lint / typecheck / test / build, main's scan_sensitive.py --diff origin/main..HEAD, the frozen check (§3.5; HL-021b.json's file is expected to show as changed under Will's waiver), the vitest JSON every-frozen-file-passed check, and a repeat-run timing measurement of the edited test",
+    "step": "one test-file line plus one manifest; no product code",
+    "stop": "success = all checks exit 0 except the Will-waived frozen-check line, reviewer PASS/CONDITIONAL; give up = any change beyond that one wait is needed, or any other frozen line changes",
+    "budget": "130 min run box from 08:24:03Z; dispatches: freeze (test engineer), verify (test engineer), reviewer; no builder (nothing to implement), no design critic (no UI); one fix pass"
+  },
+  "freeze_sha": null,
+  "fix_freeze_shas": [
+    "4792cedc5db2122b1964e923343f7a578d83009c"
+  ],
+  "exemption": null,
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "fix-freeze",
+      "model": "sonnet",
+      "outcome": "red only under induced CPU load (3/3 fail loaded, 8/8 pass unloaded); green after (3/3 loaded, 8/8 unloaded)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "all suites exit 0; mutation runs-list.tsx:10 went red",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive.py (main) --diff origin/main..HEAD",
+      "exit": 0
+    },
+    {
+      "name": "frozen check (§3.5)",
+      "exit": 1
+    },
+    {
+      "name": "every frozen vitest file passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional",
+      "exit": 0,
+      "passed": 1256,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "integration",
+      "exit": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "ui",
+      "exit": 0,
+      "passed": 108,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "non-functional (test:a11y)",
+      "exit": 0,
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "frozen playwright HL-021b",
+      "exit": 0,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [
+    {
+      "metric": "lcp_main_route",
+      "value": 219,
+      "unit": "ms",
+      "budget": 2500,
+      "machine": "cloud-runner"
+    },
+    {
+      "metric": "cls_main_route",
+      "value": 0.0155,
+      "unit": "score",
+      "budget": 0.1,
+      "machine": "cloud-runner"
+    },
+    {
+      "metric": "initial_js_gzip",
+      "value": 188180,
+      "unit": "bytes",
+      "budget": 256000,
+      "machine": "cloud-runner"
+    }
+  ],
+  "frozen_tests_unchanged": false,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/components/runs-list.tsx:40",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "CONDITIONAL",
+    "path": "reviews/2026-11-18T0024-HL-021b-r1.md",
+    "fix_pass_used": false,
+    "unflagged_claims": null
+  },
+  "not_claimed": [
+    "The Team-button waits at tests/hl-021b.run-detail-evidence.component.test.tsx:43 (openTeamRun) and :61 still use the default 1000 ms; the reviewer saw :61 fail once under load at the start commit. Not changed (Will: change only that wait).",
+    "Red before the fix was seen only under induced CPU load (4 busy loops, 2 cores); 8 plain runs at the start commit passed.",
+    "Playwright frozen specs were run by the test engineer and the reviewer, not by the lead.",
+    "Regression timings were not compared: the last record has no per-test timings.",
+    "HL-076 not built: frozen pins outside Will's approved retirement list (see needs_will)."
+  ],
+  "flakes": [
+    {
+      "test": "tests/hl-021b.run-detail-evidence.component.test.tsx::a Team filter button exists, unpressed at first",
+      "reruns_base": 11,
+      "fails_base": 3,
+      "reruns_head": 11,
+      "fails_head": 0,
+      "classified": "flake",
+      "quarantine": null
+    }
+  ],
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "STATUS.md on main: no recurring check on Will's real logs recorded; not re-checked this run"
+  },
+  "limits_hit": null,
+  "tokens": 7030657,
+  "cost_usd": null,
+  "needs_will": [
+    "Confirm the frozen-file waiver for HL-021b (frozen check exit=1: 1873417 on main plus 4792ced:56 this run).",
+    "Decide whether to extend the timeout to the Team waits at :43 and :61.",
+    "HL-076 blocked: e2e/hl-006.styleguide.spec.ts:139-140 (frozen HL-006) and tests/hl-001.app.test.tsx 'SVG renders' and 'draws marks' (frozen HL-001) also pin the skeleton; not on the approved list.",
+    "cost_usd: Will's Anthropic usage export, read on his Mac."
+  ],
+  "notes": "add_repo/register_repo_root were not available as tools; the repo was already attached and cloned at /home/claude/harness-lab (linked to ~/harness-lab), clone was shallow and was unshallowed. Deny-list check skipped: a reviews/*-deny-list-check.md record is on main. goal_cmd: unavailable. The fix-freeze commit 4792ced carries a wrong Claude-Session trailer (lead error, not amended per hard limit 10); correct session https://claude.ai/code/session_01Aq9HnUpDGSNbokdYgQN87P. Fix-freeze red counts combine test engineer (3 loaded + 8 plain) at base. No builder dispatch: the test edit is the whole change. Usage tool exit=0 (lead + 3 subagent transcripts); turns after the usage step are not counted."
+}

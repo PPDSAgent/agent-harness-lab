@@ -1,0 +1,178 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-13",
+  "slot": "1243",
+  "started_at": "2026-11-13T20:43:46Z",
+  "finished_at": "2026-11-13T21:20:03Z",
+  "mode": "BUILD",
+  "task_id": "HL-019",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-13-1243-HL-019",
+  "base": "run/2026-11-13-0039-HL-020",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-019: a sourced P1 case-study outline in docs/case-studies/p1-outline.md that leaves all prose, quotes and decisions to Will",
+    "verifier": "frozen tests/frozen/HL-019.json red before, green after; lint, typecheck, npm test, build, main scan --diff, §3.5 frozen check, every frozen test passed",
+    "step": "one doc file plus its test",
+    "stop": "success: all exit 0 and reviewer PASS; give up: tests not red for the right reason, the 130-minute mark, or a second non-PASS verdict",
+    "budget": "140 min · 9 dispatches · 1 fix pass"
+  },
+  "freeze_sha": "546e7b4e781581ee158ff8ad0cd8eab07c9f6e9b",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected (7/7 red: file missing)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "b083574, frozen 7/7 green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "all green; UI/perf/non-functional n/a (docs only)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r1",
+      "model": "opus",
+      "outcome": "CONDITIONAL: repo links broken from docs/case-studies/",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "fix freeze 1",
+      "model": "sonnet",
+      "outcome": "red-as-expected (8 missing targets)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "fix 1",
+      "model": "sonnet",
+      "outcome": "ed99296, 8/8 frozen green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "all green; fix1 test went red on a broken PLAN.md link",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r2",
+      "model": "opus",
+      "outcome": "PASS",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "vitest run (697 tests)",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive.py (main) --diff",
+      "exit": 0
+    },
+    {
+      "name": "frozen check §3.5",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional",
+      "exit": 0,
+      "passed": 697,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "integration",
+      "exit": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "regression",
+      "exit": 0,
+      "passed": 697,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "docs/case-studies/p1-outline.md:40 and :71 (runs link ../../ -> ../)",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "path": "reviews/2026-11-13T1243-HL-019-r2.md",
+    "fix_pass_used": true
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "HL-020 (#49) built but not merged; no recurring check has run on Will Mac; P1 window ended Nov 8 (PLAN.md Stop rule P1)"
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "ratify or change HL-019 criteria A1-A7 (BACKLOG had none)",
+    "merge #47 -> #48 -> #49 -> this PR bottom-up; #47 and #48 carry needs:will"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list canary: start dir /home/claude/harness-lab, HEAD 5550249, canary count 1, echo printed hl-deny-list-canary (did not load); deny-list-check records already on main. SEC-30 skipped: its fix is a law path. #47 and #48 skipped for FIX: needs:will with no Will comment since, fix pass used. No Will directions on Daily status since the last evening PR. WAIT record 0944 (v3) not committed, same reason as earlier runs if hl-002 rejects v3. Committed as schema v2: the stack HL-002 schema rejects v3 (fix_freeze_shas, exemption, not_claimed, flakes, review.unflagged_claims); the full v3 record is in this run Run log finished comment."
+}

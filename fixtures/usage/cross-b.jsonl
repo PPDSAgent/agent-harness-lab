@@ -1,0 +1,3 @@
+{"type":"header","note":"SYNTHETIC fixture for HL-026 run usage meter; labels only, cwd /Users/demo/proj"}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-03","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":5,"output_tokens":5,"cache_creation_input_tokens":5,"cache_read_input_tokens":5}}}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-04","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":1,"output_tokens":1,"cache_creation_input_tokens":1,"cache_read_input_tokens":1}}}

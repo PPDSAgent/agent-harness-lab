@@ -1,0 +1,245 @@
+{
+  "base": "run/2026-11-09-0041-HL-010b",
+  "branch": "run/2026-11-12-0039-HL-015b",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 1,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff tip..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen vitest file passed"
+    },
+    {
+      "exit": 0,
+      "name": "frozen playwright specs hl-015b and hl-015b-fix1"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-015b/scrubber-mid-1440-light.png",
+      "screens/HL-015b/scrubber-mid-1440-dark.png",
+      "screens/HL-015b/scrubber-mid-390-light.png",
+      "screens/HL-015b/scrubber-mid-390-dark.png",
+      "screens/HL-015b/scrubber-error-1440-light.png",
+      "screens/HL-015b/scrubber-error-1440-dark.png",
+      "screens/HL-015b/scrubber-error-390-light.png",
+      "screens/HL-015b/scrubber-error-390-dark.png",
+      "screens/HL-015b/scrubber-first-1440-light.png",
+      "screens/HL-015b/scrubber-first-1440-dark.png",
+      "screens/HL-015b/scrubber-first-390-light.png",
+      "screens/HL-015b/scrubber-first-390-dark.png",
+      "screens/HL-015b/scrubber-last-1440-light.png",
+      "screens/HL-015b/scrubber-last-1440-dark.png",
+      "screens/HL-015b/scrubber-last-390-light.png",
+      "screens/HL-015b/scrubber-last-390-dark.png",
+      "screens/HL-015b/scrubber-focus-1440-light.png",
+      "screens/HL-015b/scrubber-focus-1440-dark.png",
+      "screens/HL-015b/scrubber-focus-390-light.png",
+      "screens/HL-015b/scrubber-focus-390-dark.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "c570a49: 3 vitest files red (17 failed: module missing, no slider, marker not in chunk), e2e 6/6 red",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "1cb1325: frozen tests green, 3 inherited failures only",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "b068466 screens (8); no regression; entry growth +2 B gzip",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL (highlight hides error encoding; current step off-screen at 390 px; missing views)",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "e98cb8c: vitest 4 red, playwright 3 red",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "22bb49f fix, 8e36304 comment: fix1 tests green",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "b00afff screens after fix1 (20); no regression; entry growth 0 B",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "PASS",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": null,
+  "freeze_sha": "c570a49aa9236c0733aeda20314b314721df9ab9",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "130/140 minutes from start 2026-11-12T08:39:07Z; at most 9 dispatches; one fix pass.",
+    "goal": "HL-015b: swimlane scrubber (range, prev/next, Home/End, highlighted current bar, live readout) on the HL-015a swimlane (B1-B7).",
+    "step": "one task part (HL-015b), the last part of the HL-015 split.",
+    "stop": "success = frozen tests green, no failures beyond the 3 inherited at start 430a669, reviewer PASS. Give up = frozen test unpassable as written, or the 130-minute box.",
+    "verifier": "frozen tests in tests/frozen/HL-015b.json and HL-015b-fix1.json; npm run lint, typecheck, test, build; main scan_sensitive.py --diff origin/run/2026-11-09-0041-HL-010b..HEAD; frozen check (section 3.5); every frozen Vitest and Playwright file fully passed; verify table; design critic; fresh reviewer."
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/run-swimlane.tsx:43",
+    "went_red": true
+  },
+  "needs_will": [
+    "HL-006 skipped: it is first in order and now unblocked (main PR #41, D1-D4), but #41 rewrote src/index.css tokens that the stack tip (#33) lacks; building it on #33 would duplicate and conflict. Build it from main after #33 merges, or say otherwise",
+    "Run log #5 was found closed (2026-11-12T07:21:13Z); this run opened #42 per daily-run.md section 0 step 7",
+    "SEC-30 (#30, high) is first in run order but its fix is a law path (guard.yml); runs cannot build it",
+    "inherited reds on #33 (HL-010b frozen test, initial-JS budget, HL-013 lazy test) keep this PR red too",
+    "design taste calls: range thumb colour, 'Step N of M' wording, colouring 'error', one-row controls at 390 px; follow-up for sticky lane labels and fitting long bars at 390 px"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; repo pre-cloned at /home/claude/harness-lab, ~/harness-lab symlinked, not shallow. Deny-list check: session started in /home/claude, no settings file (count missing), echo printed the canary: not testable from this start directory; deny-list records already on main. SEC-30 skipped: its fix is a law path (hard limit 4). Role briefs were given to dispatches as main's copies in ~/hl-run/brief-*.md (read by path), not pasted inline; the first freeze prompt had a literal '$(task)' placeholder and the test engineer read ~/hl-run/task-block.md instead. Design critic not re-dispatched after fix1 (dispatch budget); the r2 reviewer graded the 20 PNGs. r2 reviewer cites the pre-mutation run for green and did not re-run after reverting; git diff of src/ is clean. schema_version 2 because the committed HL-002 validator rejects v3 keys. not_claimed: run-detail route timings (perf.ts measures the main route only); ingest 10k null (no fixture); flake protocol not run (no new failures); WAIT/SECURITY records on the Run log not committed (v3, fail the v2 validator). flakes: none recorded. Reflog: no amend, rebase, reset or filter-branch entries.",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud runner (lab)",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 200
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud runner (lab)",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0
+    },
+    {
+      "budget": 200,
+      "machine": "cloud runner (lab)",
+      "metric": "inp_main",
+      "unit": "ms",
+      "value": 40
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-12T0039-HL-015b-r2.md",
+    "verdict": "PASS"
+  },
+  "run_date": "2026-11-12",
+  "schema_version": 2,
+  "slot": "0039",
+  "started_at": "2026-11-12T08:39:07Z",
+  "stop_rule": {
+    "evidence": "P1: PLAN.md:103-111 recurring check needs HL-017/HL-020; neither has a PR in this run's open/closed lists; P1 window ended Nov 8. P2 reported tripped as written by earlier runs (day 1 Nov 9 passed with no MCP App rendering); HL-030 still has no PR. P3 window starts today (Nov 12); HL-050 has no PR.",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 1,
+      "failed": 3,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 439,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 53,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-015b",
+  "tokens": null
+}

@@ -1,0 +1,17 @@
+# SYNTHETIC cost export for HL-027. Hand-written; no real data. Layout is an ASSUMPTION.
+# second comment line
+starting_at,ending_at,amount,currency,model,description
+2026-11-10T10:00:00Z,2026-11-10T11:00:00Z,1.25,USD,model-a,label-a
+2026-11-10T10:00:00Z,2026-11-10T11:00:00Z,0.5,USD,model-b,label-b
+2026-11-10T10:00:00Z,2026-11-10T11:00:00Z,0.1,USD,model-c,label-c
+
+2026-11-10T11:00:00Z,2026-11-10T12:00:00Z,0.2,USD,model-a,label-a
+2026-11-10T12:00:00Z,2026-11-10T13:00:00Z,0.1234561,USD,model-a,label-a
+2026-11-10T12:00:00Z,2026-11-10T13:00:00Z,0.0000001,USD,model-b,label-b
+2026-11-10T13:00:00Z,2026-11-10T14:00:00Z,3,USD,model-a,label-a
+2026-11-10T14:00:00Z,2026-11-10T15:00:00Z,4,USD,model-a,label-a
+2026-11-10T16:00:00Z,2026-11-10T17:00:00Z,5,USD,model-a,label-a
+2026-11-10T17:00:00Z,2026-11-10T18:00:00Z,6,USD,model-a,label-a
+2026-11-10T18:00:00Z,2026-11-10T19:00:00Z,7,USD,model-a,label-a
+2026-11-10T19:00:00Z,2026-11-10T20:00:00Z,8,USD,model-a,label-a
+2026-11-10T21:00:00Z,2026-11-10T22:00:00Z,9,USD,model-a,label-a

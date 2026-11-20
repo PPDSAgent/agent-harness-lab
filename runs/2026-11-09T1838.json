@@ -1,0 +1,249 @@
+{
+  "base": "run/2026-11-09-1542-HL-012",
+  "branch": "run/2026-11-09-1838-HL-013",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 1,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff tip..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 1,
+      "name": "frozen vitest files all passed"
+    },
+    {
+      "exit": 0,
+      "name": "playwright frozen specs --project ui"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-013/home-claims-1440-light.png",
+      "screens/HL-013/home-claims-1440-dark.png",
+      "screens/HL-013/home-claims-390-light.png",
+      "screens/HL-013/home-claims-390-dark.png",
+      "screens/HL-013/home-claims-390-light-footer.png",
+      "screens/HL-013/home-claims-390-light-empty.png",
+      "screens/HL-013/home-claims-1440-light-focus.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "ecbd6f5: 3 vitest files and 1 playwright spec red (modules missing, no chunk, no button); one test later shown red for the wrong reason (jsdom URL scheme)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "2de36c3 green except the 2 inherited reds and frozen claims-audit-section test line 187 (TypeError: The URL must be of scheme file)",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "initial JS 256165 -> 257467 bytes (shared lazy-chunk split); screens ea34c3e",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL (390 px claims list hid claim text behind inner scroll; caption clipped)",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "FAIL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "9fce094: 2 of 3 playwright tests red as expected; gaps test and order test green at freeze",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "000fe9a fix spec green; same 3 reds",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no new failures; screens 6a75951 (7 PNGs)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "FAIL",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-10T03:27:58Z",
+  "freeze_sha": "ecbd6f5",
+  "frozen_tests_all_ran": false,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "140 minutes from start; at most 9 dispatches (freeze, build, verify, critic, review + one fix pass: fix freeze, build, verify, review).",
+    "goal": "HL-013: pure auditClaims plus a lazy-loaded Unsupported claims section on the home page (A1-A7).",
+    "step": "one task (HL-013).",
+    "stop": "success = frozen tests green, checks exit 0 except the two inherited failures (HL-010b fixture id, HL-011a-fix1 JS budget), reviewer PASS/CONDITIONAL. Give up = tests not red for the right reason, frozen check fails, HEAD moves in review, or the 130-minute box.",
+    "verifier": "frozen tests in tests/frozen/HL-013.json (and -fix1); npm run lint, typecheck, test, build; main scan_sensitive.py --diff origin/run/2026-11-09-1542-HL-012..HEAD; frozen check (§3.5); every frozen Vitest and Playwright file fully passed; verify table; design critic; fresh reviewer."
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/claims-audit.tsx:80",
+    "went_red": true
+  },
+  "needs_will": [
+    "frozen tests/hl-013.claims-audit-section.component.test.tsx:187 cannot pass in jsdom (new URL rewritten to http:); authorise a re-freeze (e.g. join(process.cwd(),\"src/App.tsx\")) or accept",
+    "r2 regression: src/components/claims-audit.tsx:70 thead sr-only not undone at sm, headers visually hidden at >=640 px; next FIX run fixes it tests-first",
+    "initial JS +1302 bytes from a shared lazy-chunk split (257467 vs 256165), on top of the existing budget decision",
+    "frozen fix1 gaps test cannot go red on the r1 layout: re-freeze or record as a regression guard",
+    "D4 density for the stacked 390 px list",
+    "CI inherits #33 HL-010b red and #36 budget red"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in this session toolset; repo pre-attached and cloned at /home/claude/harness-lab, ~/harness-lab symlinked (HOME is /root). Step 1a: start dir /home/claude/harness-lab at 8a826b0 (main), settings canary count 1, `echo hl-deny-list-canary` echoed: deny list did not load from this start directory. Faker exit 0, names: on. SEC-30 (high) skipped: fix is in .github/workflows/guard.yml, a law path. #33-#36 all needs:will with no Will comment since the label, so no FIX. Lead error: the freeze was accepted on file-level red (import failure), which hid a per-test wrong-reason red at claims-audit-section line 187. WAIT/SECURITY records since the last committed one not committed (frozen HL-002 validator accepts only schema v2, as noted by the 1542 run). Reflog: no amend/rebase/reset/filter-branch entries. not_claimed: PR body not graded; design critic did not re-grade post-fix screens (reviewer r2 did); real-device perf; ingest throughput (no 10k fixture); per-test regression diff against a merged baseline. flakes: none observed. (not_claimed and flakes kept in notes: the v2 JSON Schema on this stack rejects them as top-level fields.)",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud runner (lab)",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 254
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud runner (lab)",
+      "metric": "cls",
+      "unit": "score",
+      "value": 0
+    },
+    {
+      "budget": 200,
+      "machine": "cloud runner (lab)",
+      "metric": "inp",
+      "unit": "ms",
+      "value": 48
+    },
+    {
+      "budget": 250,
+      "machine": "cloud runner (lab)",
+      "metric": "initial_js_gzip_main_route",
+      "unit": "KB",
+      "value": 251.4
+    },
+    {
+      "budget": 2000,
+      "machine": "cloud runner (lab)",
+      "metric": "ingest_10k_events",
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-09T1838-HL-013-r2.md",
+    "verdict": "FAIL"
+  },
+  "run_date": "2026-11-09",
+  "schema_version": 2,
+  "slot": "1838",
+  "started_at": "2026-11-10T02:38:56Z",
+  "stop_rule": {
+    "evidence": "P1 window ended 2026-11-08; HL-017 and HL-020 not built, so no recurring check has run; no Will direction on the Daily status issue since the 2026-11-08 evening PR. P2 day 1 (Nov 9) ends with HL-030 not started.",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 1,
+      "failed": 3,
+      "name": "functional",
+      "new_failures": [
+        "tests/hl-013.claims-audit-section.component.test.tsx (frozen, new; broken test)"
+      ],
+      "passed": 337,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 30,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-013",
+  "tokens": null
+}

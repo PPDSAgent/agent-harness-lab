@@ -1,0 +1,207 @@
+{
+  "base": "run/2026-11-03-1839-HL-005",
+  "branch": "run/2026-11-03-2139-HL-007",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 1,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff"
+    },
+    {
+      "exit": 0,
+      "name": "frozen diff"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen test passed"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-007/home-1440-light.png",
+      "screens/HL-007/home-1440-dark.png",
+      "screens/HL-007/home-390-light.png",
+      "screens/HL-007/home-390-dark.png"
+    ],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green-except-inherited-lint",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no-regression-one-nonblocking-finding",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review-r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "fixed-r1-required-fix",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no-regression-no-blown-budget",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review-r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "PASS",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "daily-status",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "posted",
+      "role": "steward",
+      "started_at": null
+    },
+    {
+      "duty": "study-set",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "posted",
+      "role": "tutor",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-04T06:01:36Z",
+  "freeze_sha": "8f5205940f5416b718989c1c4b8fb641de3b6e0f",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "140 min from ~/hl-run/start · 8 dispatches · 1 fix pass",
+    "goal": "HL-007: `npm run screens` captures each route at 1440 and 390 px, light and dark, into screens/<task>/ with Playwright on the system Chrome (channel chrome); on the HL-001 page it writes 4 PNGs each under 300 KB and exits 0",
+    "step": "one task, one branch, one draft PR stacked on #15",
+    "stop": "success: frozen tests green, all checks exit 0 except the inherited HL-003 lint line, reviewer PASS; give up: freeze not red for the right reason, or still not PASS after one fix pass (open PR labeled needs:will), or the 130/140-minute time box",
+    "verifier": "frozen tests listed in tests/frozen/HL-007.json (read at the freeze commit); npm ci, lint, typecheck, test, build; main's scan_sensitive.py --diff origin/run/2026-11-03-1839-HL-005..HEAD; frozen-diff exit 0; every frozen test passed in the runner report"
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "scripts/screens.ts:59",
+    "went_red": true
+  },
+  "needs_will": [
+    "PR #13: decide the frozen HL-003 lint line (re-freeze approved, or waive lint for that file); CI checks stays red up the stack until then"
+  ],
+  "notes": "goal_cmd: unavailable. deny-list check: not testable from this start directory (reviews/2026-11-03T2139-deny-list-check.md). add_repo/register_repo_root not offered; repo pre-cloned, ~/harness-lab symlinked. lint exit 1 is the inherited tests/hl-003.claude-code-fixtures.test.ts:251 only. r1 verdict line 65 had two 16-digit floats truncated to 2 dp by the lead before first push (scanner card_number false positive). Freeze dispatch used the registered test-engineer type, whose brief equals main (git diff origin/main HEAD -- .claude/agents/ empty); the brief text was not pasted into that prompt. LCP/CLS null: not wired until HL-009. Evening: steward status https://github.com/PPDSAgent/harness-lab/issues/3#issuecomment-6623828635 ; tutor set https://github.com/PPDSAgent/harness-lab/issues/4#issuecomment-6623816805 ; bookkeeping PR #17. Dispatch count 9 = 7 BUILD (budget 8) + 2 evening roles.",
+  "perf": [
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip",
+      "unit": "kB",
+      "value": 176.49
+    },
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": null
+    }
+  ],
+  "phase": "0-foundations",
+  "pr_number": 16,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-03T2139-HL-007-r2.md",
+    "verdict": "PASS"
+  },
+  "run_date": "2026-11-03",
+  "schema_version": 2,
+  "slot": "2139",
+  "started_at": "2026-11-04T05:39:00Z",
+  "stop_rule": {
+    "evidence": null,
+    "project": "P0",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 137,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 137,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-007",
+  "tokens": null
+}

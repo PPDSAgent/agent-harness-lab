@@ -1,0 +1,211 @@
+@import "tailwindcss";
+/* Tailwind's dark: utilities follow the toggle (<html data-theme>), not the OS setting.
+   https://tailwindcss.com/docs/dark-mode */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/*
+ * Design tokens — primitive -> semantic -> component (@theme).
+ * D1 (Will, 2026-11-11): system font stack; no bundled webfont.
+ * D2 (Will, 2026-11-11): graphite surfaces, one signal accent, evidence token,
+ *   elevation tints + inner card edge, one staged load-in, prefers-reduced-motion.
+ * D3 (Will, 2026-11-03): dark-first; light tokens key on <html data-theme="light">.
+ * D4 (Will, 2026-11-11): compact Observatory density; comfortable reserved for P3.
+ * Hex lives only on --p-* primitives. Components use token names, never values.
+ */
+:root {
+  color-scheme: dark;
+
+  /* primitive — graphite */
+  --p-graphite-950: #121417;
+  --p-graphite-900: #1a1d22;
+  --p-graphite-850: #23282e;
+  --p-graphite-800: #2c3239;
+  --p-graphite-700: #3d454e;
+  --p-graphite-400: #a7b0ba;
+  --p-graphite-100: #e6e9ed;
+  --p-graphite-50: #f3f5f7;
+  --p-graphite-0: #ffffff;
+
+  /* primitive — signal (primary actions + live/'now' only) */
+  --p-signal: #5eb8b8;
+  --p-signal-fg: #0c1012;
+
+  /* primitive — evidence (source chips / citations only; the house signature) */
+  --p-evidence: #d7c4a3;
+  --p-evidence-fg: #1a1610;
+
+  /* primitive — status */
+  --p-danger: #ee6c64;
+  --p-danger-fg: #1a0e0c;
+
+  /* primitive — charts, Okabe–Ito 6 (Wong 2011, Nature Methods)
+     https://www.nature.com/articles/nmeth.1618 */
+  --p-chart-1: #56b4e9;
+  --p-chart-2: #e69f00;
+  --p-chart-3: #009e73;
+  --p-chart-4: #f0e442;
+  --p-chart-5: #cc79a7;
+  --p-chart-6: #d55e00;
+
+  /* primitive — type and density */
+  --p-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --p-font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --p-space-compact-x: 0.5rem;
+  --p-space-compact-y: 0.375rem;
+  --p-space-comfortable-x: 1rem;
+  --p-space-comfortable-y: 0.75rem;
+
+  /* semantic */
+  --background: var(--p-graphite-950);
+  --foreground: var(--p-graphite-100);
+  --card: var(--p-graphite-900);
+  --card-foreground: var(--p-graphite-100);
+  --surface-2: var(--p-graphite-850);
+  --surface-3: var(--p-graphite-800);
+  --elevation-highlight: var(--p-graphite-700);
+  --muted-foreground: var(--p-graphite-400);
+  --primary: var(--p-signal);
+  --primary-foreground: var(--p-signal-fg);
+  --live: var(--p-signal);
+  --live-foreground: var(--p-signal-fg);
+  --evidence: var(--p-evidence);
+  --evidence-foreground: var(--p-evidence-fg);
+  --secondary: var(--p-graphite-850);
+  --secondary-foreground: var(--p-graphite-100);
+  --accent: var(--p-graphite-850);
+  --accent-foreground: var(--p-graphite-100);
+  --destructive: var(--p-danger);
+  --destructive-foreground: var(--p-danger-fg);
+  --border: var(--p-graphite-800);
+  --input: var(--p-graphite-800);
+  --ring: var(--p-signal);
+  --chart-1: var(--p-chart-1);
+  --chart-2: var(--p-chart-2);
+  --chart-3: var(--p-chart-3);
+  --chart-4: var(--p-chart-4);
+  --chart-5: var(--p-chart-5);
+  --chart-6: var(--p-chart-6);
+  --density-compact-x: var(--p-space-compact-x);
+  --density-compact-y: var(--p-space-compact-y);
+  --density-comfortable-x: var(--p-space-comfortable-x);
+  --density-comfortable-y: var(--p-space-comfortable-y);
+}
+
+/* Light theme: set by the toggle, or by System when the OS prefers light. No JS → dark. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --p-graphite-950: #1a1d21;
+  --p-graphite-900: #2a2e33;
+  --p-graphite-850: #e8eaed;
+  --p-graphite-800: #d4d8dd;
+  --p-graphite-700: #c5cbd2;
+  --p-graphite-400: #4f575f;
+  --p-graphite-100: #1a1d21;
+  --p-graphite-50: #f4f5f7;
+  --p-graphite-0: #ffffff;
+  --p-signal: #0f6a7c;
+  --p-signal-fg: #ffffff;
+  --p-evidence: #4a3728;
+  --p-evidence-fg: #ffffff;
+  --p-danger: #b3261e;
+  --p-danger-fg: #ffffff;
+  /* Light chart set: Wong hues, darkened and spaced so every pair stays
+     ΔE00 ≥ 10 under Machado 2009 protanopia / deuteranopia / tritanopia
+     while meeting 3:1 on --p-graphite-50 / white. Yellow becomes olive
+     because a 3:1-on-white yellow cannot stay yellow. */
+  --p-chart-1: #1663a9;
+  --p-chart-2: #85621c;
+  --p-chart-3: #2a9665;
+  --p-chart-4: #899407;
+  --p-chart-5: #581854;
+  --p-chart-6: #6c0609;
+  --background: var(--p-graphite-50);
+  --foreground: var(--p-graphite-950);
+  --card: var(--p-graphite-0);
+  --card-foreground: var(--p-graphite-950);
+  --surface-2: var(--p-graphite-850);
+  --surface-3: var(--p-graphite-800);
+  --elevation-highlight: var(--p-graphite-0);
+  --muted-foreground: var(--p-graphite-400);
+  --secondary: var(--p-graphite-850);
+  --secondary-foreground: var(--p-graphite-950);
+  --accent: var(--p-graphite-850);
+  --accent-foreground: var(--p-graphite-950);
+  --border: var(--p-graphite-800);
+  --input: var(--p-graphite-800);
+}
+
+@theme inline {
+  --font-sans: var(--p-font-sans);
+  --font-mono: var(--p-font-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-elevation-highlight: var(--elevation-highlight);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-live: var(--live);
+  --color-live-foreground: var(--live-foreground);
+  --color-evidence: var(--evidence);
+  --color-evidence-foreground: var(--evidence-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --spacing-compact-x: var(--density-compact-x);
+  --spacing-compact-y: var(--density-compact-y);
+  --spacing-comfortable-x: var(--density-comfortable-x);
+  --spacing-comfortable-y: var(--density-comfortable-y);
+  --shadow-card: inset 0 1px 0 var(--elevation-highlight);
+  --radius-md: 0.375rem;
+  --radius-xl: 0.5rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--p-font-sans);
+  }
+}
+
+/* D2(d): at most one staged load-in per view; honor prefers-reduced-motion. */
+@keyframes hl-view-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+[data-view-enter] {
+  animation: hl-view-enter 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-view-enter] {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

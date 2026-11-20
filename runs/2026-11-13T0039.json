@@ -1,0 +1,174 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-13",
+  "slot": "0039",
+  "started_at": "2026-11-13T08:39:08Z",
+  "finished_at": null,
+  "mode": "BUILD",
+  "task_id": "HL-020",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-13-0039-HL-020",
+  "base": "run/2026-11-12-2139-HL-016",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-020: ingest --stop-check prints only yes/no per P1 question, keeps the report and history under a local gitignored path, evaluates the P1 trip condition; fixtures only.",
+    "verifier": "frozen tests in tests/frozen/HL-020*.json; npm run lint/typecheck/test/build; main's scan_sensitive.py --diff origin/<tip>..HEAD; frozen check (daily-run 3.5); every frozen test passed in vitest JSON",
+    "step": "one task, one PR, stacked on #48",
+    "stop": "success: frozen tests red then green, checks 0 except inherited lint, reviewer PASS/CONDITIONAL; give up: tests not red for the right reason, frozen check fails, or the 130-minute dispatch box",
+    "budget": "140 min · 9 dispatches · 1 fix pass"
+  },
+  "freeze_sha": "4b3c78c",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected (20 failed, 9 passed)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "green (commit 4148b31)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no regression; mutation red",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r1",
+      "model": "opus",
+      "outcome": "FAIL (A3: report path not checked for ignore)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "fix freeze 1",
+      "model": "sonnet",
+      "outcome": "red-as-expected (2 failed, 2 passed)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "fix",
+      "model": "sonnet",
+      "outcome": "green (commit 35ac231)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify 2",
+      "model": "sonnet",
+      "outcome": "no regression; mutation red",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r2",
+      "model": "opus",
+      "outcome": "PASS",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm ci",
+      "exit": 0
+    },
+    {
+      "name": "npm run lint",
+      "exit": 1
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npm test (vitest json)",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_main.py --diff",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional",
+      "exit": 0,
+      "passed": 678,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "regression",
+      "exit": 0,
+      "passed": 678,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/cli/ingest.ts:125",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "path": "reviews/2026-11-13T0039-HL-020-r2.md",
+    "fix_pass_used": true
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "HL-020 now built (this PR) but not merged; no recurring check has run on Will's Mac; P1 window ended Nov 8"
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "lint red on #47's frozen hl-006-fix1 test (inherited up the stack)",
+    "merge the stack bottom-up (#33, #47, #48, this PR)",
+    "after merge: approve the Mac-bound scheduled stop check and attend its first run"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not available in this session; the repo was already cloned at /home/claude/harness-lab and ~/harness-lab was symlinked to it. Deny-list canary: start dir /home/claude (no settings file), later pwd /home/claude/harness-lab with canary rule count 1; `echo hl-deny-list-canary` printed its text, so the deny list did not load (deny-list-check records already on main, so the step was not required). Role briefs passed as files copied from origin/main (branch .claude/agents identical to main); first freeze dispatch had unfilled placeholders and the test engineer used /root/hl-run/task-block.md. Committed SECURITY record 2026-11-12T0339 from Run log comment 6823271122. Run records for 2026-11-12 slots 1239/1539/1839/2139 are not on the stack (not investigated). Written as schema_version 2 because the stack's schemas/run-record.schema.json (HL-002, frozen) accepts only v2 while main's runs/SCHEMA.md requires v3; same choice as earlier records on this stack. v3-only fields moved here: fix_freeze_shas=[bf85dbd]; exemption=null; flakes=[]; not_claimed=[\"the CLI on Will's real logs or on macOS (fixtures in a Linux container only)\",\"ingest throughput budget (no 10,000-event fixture exists)\",\"bundle size re-measured after the fix (CLI is outside the app entry graph; asset list compared only at 4148b31)\",\"lint green: red on the inherited #47 frozen test hl-006-fix1:6:35\",\"a frozen test for 'report path ignored, history not ignored' (r2 observation 1)\",\"the deny list loading from the repo (canary echoed; session started in /home/claude)\"]. SECURITY record 2026-11-12T0339 (v3) NOT committed: byte-identical copy fails the HL-002 schema test."
+}

@@ -1,0 +1,255 @@
+{
+  "base": "main",
+  "branch": "run/2026-11-17-0939-HL-030a",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules/branches/main missing protections"
+    },
+    {
+      "exit": 0,
+      "name": "npm ci (3c8d049)"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check (575754b)"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint (575754b)"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck (575754b)"
+    },
+    {
+      "exit": 0,
+      "name": "npx vitest run --reporter=json (575754b)"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build (575754b)"
+    },
+    {
+      "exit": 0,
+      "name": "scan_main --diff c03e0c8..HEAD (575754b)"
+    },
+    {
+      "exit": 0,
+      "name": "every frozen vitest file passed"
+    },
+    {
+      "exit": 0,
+      "name": "playwright e2e/hl-030a-fix1 spec --reporter=json"
+    },
+    {
+      "exit": 1,
+      "name": "fix1 vitest red at 48d928a"
+    },
+    {
+      "exit": 1,
+      "name": "fix1 playwright red at 48d928a"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-030a/chart-1440-light.png",
+      "screens/HL-030a/chart-1440-dark.png",
+      "screens/HL-030a/chart-390-light.png",
+      "screens/HL-030a/chart-390-dark.png",
+      "screens/HL-030a/error-1440-light.png",
+      "screens/HL-030a/error-1440-dark.png",
+      "screens/HL-030a/error-390-light.png",
+      "screens/HL-030a/error-390-dark.png",
+      "screens/HL-030a/waiting-1440-light.png",
+      "screens/HL-030a/waiting-390-light.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [
+    "https://github.com/PPDSAgent/harness-lab/issues/3#issuecomment-6968982256"
+  ],
+  "dispatches": [
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green; screens a48e542",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected; 48d928a",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green; 575754b",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "green; screens 7cb782c",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "exemption": "r1 required fix 4: comment-only change at src/mcp/series-chart/view.ts:2 (rule 7, comment no tool reads)",
+  "finished_at": "2026-11-18T05:18:52Z",
+  "fix_freeze_shas": [
+    "48d928a"
+  ],
+  "flakes": [],
+  "freeze_sha": "de34fba",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "140 min · 9 dispatches · 1 fix pass",
+    "goal": "finish #66's stopped pipeline (verify, design critic, fresh review) and, on CONDITIONAL, one tests-first fix pass",
+    "step": "one PR, one fix pass",
+    "stop": "success: reviewer PASS with all checks 0; give up: frozen check != 0, tests not red for the right reason, a frozen test that must change, still not PASS after the fix pass (needs:will), or the 130/140-min box",
+    "verifier": "frozen tests/frozen/HL-030a.json (de34fba) and tests/frozen/HL-030a-fix1.json (48d928a); npm ci, lint, typecheck, vitest JSON, build, main's scan --diff c03e0c8..HEAD, frozen check, every-frozen-test-passed (vitest + Playwright JSON); fresh reviewer each pass"
+  },
+  "mode": "FIX",
+  "mutation_check": {
+    "file_line": "src/mcp/series-chart/html.ts:11",
+    "went_red": true
+  },
+  "needs_will": [
+    "#66 still CONDITIONAL after the fix pass: r2 F1, tick labels 16-19 px (above the 16 px title) at frame widths 540-640 px; needs a new fix freeze sweeping widths",
+    "#66 design calls: y-axis unit and source line (schema field), data table, host theme vs prefers-color-scheme, hardcoded iframe colours, error state looks like waiting state",
+    "P2 stop rule tripped by date; applying it is Will's call",
+    "cost_usd: source is Will's Anthropic usage export, read on his Mac"
+  ],
+  "not_claimed": [
+    "PR #66 body claims 'about 600 KB' for the ext-apps App bundle and 'URL-like strings tripped the no-network check' were not reproduced this run (reviewer measured the file at 541,828 bytes)",
+    "tick size between 390 and 1440 px other than those two widths: reviewer r2 F1 found ticks 16-19 px at 540-640 px; not fixed this run",
+    "rendering in any real MCP Apps host (Will's check; HL-030b builds the local test host)",
+    "dispatch start/finish times not recorded",
+    "perf and UI numbers are lab values from the cloud runner, taken by the test engineer"
+  ],
+  "notes": "FIX on #66 per Will's direction 6968982256 (no code change was pending; the run completed the review the 0939 BUILD never reached, then one fix pass). add_repo/register_repo_root not exposed this session; repo was already cloned at /home/claude/harness-lab (symlinked to ~/harness-lab), fetched and unshallowed. Deny-list-check records already on main, so §0 1a skipped. goal_cmd: unavailable. Diff range graded from merge-base c03e0c8 because origin/main moved to b03a5b9 (PR #67). Turns after the usage step are not counted.",
+  "perf": [
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip",
+      "unit": "KB",
+      "value": 183.8
+    },
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 183
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0.0155
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": 24
+    }
+  ],
+  "phase": "2-forecast-mcp-app",
+  "pr_number": 66,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-17T2023-HL-030a-r2.md",
+    "unflagged_claims": 2,
+    "verdict": "CONDITIONAL"
+  },
+  "run_date": "2026-11-17",
+  "schema_version": 3,
+  "slot": "2023",
+  "started_at": "2026-11-18T04:23:58Z",
+  "stop_rule": {
+    "evidence": "PLAN.md:128-131 day-1 deadline Mon Nov 9 passed; HL-030a renders only in a test-engineer harness iframe, in no real host",
+    "project": "P2",
+    "status": "tripped"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 1042,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui (playwright ui+a11y)",
+      "new_failures": [],
+      "passed": 135,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 1042,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-030a",
+  "tokens": 14290618
+}

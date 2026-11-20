@@ -1,0 +1,174 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-17",
+  "slot": "0039",
+  "started_at": "2026-11-17T08:39:05Z",
+  "finished_at": "2026-11-17T09:41:40Z",
+  "mode": "BUILD",
+  "task_id": "HL-022b",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-17-0039-HL-022b",
+  "base": "run/2026-11-16-2139-HL-022a",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-022b (P1 ship gate part b): the steward P1 launch kit drafted in marketing/p1/, every number linked to a repo source, Will quotes as placeholders, nothing published",
+    "verifier": "frozen tests/hl-022b.launch-kit.test.ts (manifest tests/frozen/HL-022b.json at 436b13b); npm ci, lint, typecheck, vitest, build; main scan_sensitive --diff origin/run/2026-11-16-2139-HL-022a..HEAD; frozen check; every frozen test passed; fresh reviewer",
+    "step": "one task part, one draft PR stacked on #63",
+    "stop": "success: all checks exit 0 and reviewer PASS, pushed; give up: tests not red for the right reason, frozen check != 0, or the 130/140-min box",
+    "budget": "whole-run box 140 min from start · 9 dispatches · 1 fix pass (used 8 dispatches; fix pass used)"
+  },
+  "freeze_sha": "436b13b",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected: 34 of 39 failed (kit files missing); 5 checker self-tests and B5 pass",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "steward",
+      "duty": "build (launch kit)",
+      "model": "sonnet",
+      "outcome": "8 kit files, commits fff7264 and 68b900f; frozen 39/39",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "no regression: base 946/946, head 985/985, +39 frozen",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "CONDITIONAL r1: four copy truth fixes",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "steward",
+      "duty": "fix build",
+      "model": "sonnet",
+      "outcome": "b946893, r1 fixes in 5 kit files; frozen 39/39",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify (fix)",
+      "model": "sonnet",
+      "outcome": "no regression: head 985/985",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review",
+      "model": "opus",
+      "outcome": "CONDITIONAL r2: r1 fixes resolved; one new overclaim at marketing/p1/announcement.md:15",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "main ruleset rules missing (count)",
+      "exit": 0
+    },
+    {
+      "name": "faker==40.44.0 install",
+      "exit": 0
+    },
+    {
+      "name": "npm ci",
+      "exit": 0
+    },
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "npx vitest run (json)",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive (main) --diff origin/run/2026-11-16-2139-HL-022a..HEAD",
+      "exit": 0
+    },
+    {
+      "name": "frozen check",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "regression",
+      "exit": 0,
+      "passed": 985,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "marketing/p1/thread.md:11",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "CONDITIONAL",
+    "path": "reviews/2026-11-17T0039-HL-022b-r2.md",
+    "fix_pass_used": true
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": {
+    "issue": null,
+    "critical": null,
+    "high": null,
+    "medium": null,
+    "low": null,
+    "seeded_caught": null,
+    "seeded_total": null
+  },
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "P1 window ended Nov 8; ship gate parts a (#63) and b (this run) built as drafts; Will UAT (uat/p1.md) and the recurring Mac check not evidenced"
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "r2 CONDITIONAL: one-line copy fix at marketing/p1/announcement.md:15 (each task reviewed overclaims; HL-010b has no review) — fix in chat or comment for the next run",
+    "whether a test reading a .md file breaks the *.md-no-code-imports exemption (claimed for fix b946893; r2 says it holds)",
+    "kit links are repo-root-relative and one links CLAUDE.md in a private repo; fix at export time (r1 F6, r2 F4)",
+    "run uat/p1.md and decide the two medium findings (carried from #63)"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Step 1a canary run anyway: start dir /home/claude/harness-lab, settings canary count 1, echo printed hl-deny-list-canary (deny list did not load in this run). Briefs given to agents as files extracted verbatim from origin/main (~/hl-run/briefs/). SEC-30 and SEC-58 skipped: their fixes are law paths (open law PRs #59-#61). #62 and #63 skipped for FIX: needs:will with no Will comment, both green (checks+guard success) with PASS r1. No design critic: no UI file changed. Fix pass exemption claimed: *.md files that no code imports (frozen test reads them as data; r2 judged it holds). not_claimed: that every linked source supports its number beyond the reviewers manual checks; tone; that the demo script fits 60 s when shot; spelled-out number words are not mechanically checked (r2 F3); performance not measured (no src change); dispatch times; tokens and cost. flakes: none observed; one vitest json run killed by the tool 2-minute timeout, re-run with a longer timeout exit 0. Written at schema_version 2 for the same reason as earlier runs; Run log WAIT/SECURITY records not committed (v3 vs schema mismatch, needs Will)."
+}

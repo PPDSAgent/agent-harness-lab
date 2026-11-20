@@ -1,0 +1,255 @@
+{
+  "base": "run/2026-11-09-1239-HL-011b",
+  "branch": "run/2026-11-09-1542-HL-012",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 1,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff tip..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 0,
+      "name": "frozen vitest files all passed"
+    },
+    {
+      "exit": 0,
+      "name": "playwright frozen specs --project ui"
+    },
+    {
+      "exit": 0,
+      "name": "npm run perf"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [
+      "screens/HL-012/home-eval-1440-light.png",
+      "screens/HL-012/home-eval-1440-dark.png",
+      "screens/HL-012/home-eval-390-light.png",
+      "screens/HL-012/home-eval-390-dark.png",
+      "screens/HL-012/home-eval-tables-390-light.png",
+      "screens/HL-012/home-eval-tables-390-dark.png",
+      "screens/HL-012/home-eval-tables-trend-1440-light.png",
+      "screens/HL-012/home-eval-tables-trend-1440-dark.png",
+      "screens/HL-012/home-eval-tables-breakdown-1440-light.png",
+      "screens/HL-012/home-eval-tables-breakdown-1440-dark.png"
+    ],
+    "verdict": "CONDITIONAL"
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected (14bcce0: both files fail at import, modules missing)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "9eec2b9 green except inherited HL-010b; added a global Array.excluded type augmentation to make a frozen test typecheck",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "axe scrollable-region-focusable (serious) at 390 px with tables open; screens 65ca8cd",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "grade",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "CONDITIONAL (colour-only series cue, trend readability, dark Fail/Conditional hues)",
+      "role": "design-critic",
+      "started_at": null
+    },
+    {
+      "duty": "review r1",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "FAIL",
+      "role": "reviewer",
+      "started_at": null
+    },
+    {
+      "duty": "fix freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected (e6251db: vitest 4 failed, playwright 2 failed)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "fix",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "910cad9 green except inherited HL-010b",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "axe 0 violations in 4 contexts; screens 8bea7d4",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review r2",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "CONDITIONAL",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-10T00:31:35Z",
+  "freeze_sha": "14bcce0",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "140 minutes from start; at most 9 dispatches (freeze, build, verify, critic, review + one fix pass: fix freeze, build, verify, review).",
+    "goal": "HL-012: eval pass-rate trend and verdict breakdown: pure summarizeVerdicts/passRateTrend and a lazy-loaded Eval pass rate section on the home page.",
+    "step": "one task (HL-012).",
+    "stop": "success = frozen tests green, checks exit 0 except the inherited HL-010b failure from #33, reviewer PASS/CONDITIONAL. Give up = tests not red for the right reason, frozen check fails, HEAD moves in review, or the 130-minute box.",
+    "verifier": "frozen tests in tests/frozen/HL-012.json (and -fix1); npm run lint, typecheck, test, build; main scan_sensitive.py --diff origin/run/2026-11-09-1239-HL-011b..HEAD; frozen check (§3.5); every frozen Vitest and Playwright file fully passed; initial-JS budget test; verify table; design critic; fresh reviewer."
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/verdict-charts.tsx:74",
+    "went_red": true
+  },
+  "needs_will": [
+    "Array augmentation: src/lib/verdict-summary.ts:31-35 declares a global Array<T>.excluded type so frozen tests/hl-012.verdict-summary.test.ts:57-58 typechecks (TS2339 without it). Re-freeze those lines (a) or accept it (b)",
+    "accept the in-SVG key as meeting DESIGN.md colour/direct-label rules, or direct a fix2 (markers or line-end labels, bar labels)",
+    "require a generated-at in the chart footers or waive it (the lead dropped it from the fix-freeze brief)",
+    "design taste: D2 dark Fail/Conditional hues, D4 60-row trend table at 390 px, metric (daily vs rolling, raw vs 100% stacked)",
+    "initial JS 249.7 KiB of 250 (unit KiB vs KB unconfirmed); 0.3 KiB headroom",
+    "CI inherits #33 red HL-010b test",
+    "WAIT/SECURITY records since the last committed one not committed: frozen HL-002 validator accepts only schema v2"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in this session toolset; repo pre-cloned at /home/claude/harness-lab, ~/harness-lab symlinked (HOME is /root). Deny-list records on main, step 1a not required; ran anyway: start dir /home/claude has no settings file (not testable), canary echoed. Faker exit 0, names: on. SEC-30 (high) skipped: fix is in .github/workflows/guard.yml, a law path. #33-#35 all needs:will with no Will comment since the label, so no FIX. Lead errors: (1) the freeze dispatch prompt said the role brief was appended but it was not; the registered test-engineer agent loaded the branch copy, which is byte-identical to main (git diff --quiet origin/main HEAD -- .claude/agents/test-engineer.md). (2) the fix-freeze brief summarised r1 fix 3 as date range only and dropped generated-at. Reflog: two reset: moving to HEAD entries and a checkout to 829c14f and back, from the builder running git stash -u / stash pop and a detached checkout to measure the base bundle; no commit rewritten. not_claimed: PR body not graded; design critic did not re-grade post-fix screens (reviewer r2 looked); perf on a real device (lab numbers, one load); ingest throughput (no 10k fixture); per-test regression diff (prior record has no per-test results). flakes: none observed.",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud runner (lab)",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 252
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud runner (lab)",
+      "metric": "cls",
+      "unit": "score",
+      "value": 0.0001
+    },
+    {
+      "budget": 200,
+      "machine": "cloud runner (lab)",
+      "metric": "inp",
+      "unit": "ms",
+      "value": 40
+    },
+    {
+      "budget": 250,
+      "machine": "cloud runner (lab)",
+      "metric": "initial_js_gzip_main_route",
+      "unit": "KB",
+      "value": 249.7
+    },
+    {
+      "budget": 2000,
+      "machine": "cloud runner (lab)",
+      "metric": "ingest_10k_events",
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": true,
+    "path": "reviews/2026-11-09T1542-HL-012-r2.md",
+    "verdict": "CONDITIONAL"
+  },
+  "run_date": "2026-11-09",
+  "schema_version": 2,
+  "slot": "1542",
+  "started_at": "2026-11-09T23:42:43Z",
+  "stop_rule": {
+    "evidence": "P1 window ended 2026-11-08; HL-017 and HL-020 not built, so no recurring check has run; no Will direction on the Daily status issue (6 comments, all bot). P2 day 1 (Nov 9) passes with HL-030 not started.",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 1,
+      "failed": 1,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 311,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 25,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 2,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-012",
+  "tokens": null
+}

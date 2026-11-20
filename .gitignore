@@ -1,0 +1,21 @@
+node_modules/
+dist/
+build/
+.next/
+coverage/
+playwright-report/
+test-results/
+.vite/
+*.log
+!fixtures/**/*.log
+!evals/**/*.log
+.DS_Store
+# secrets and local-only data never enter the repo
+.env
+.env.*
+*.local.*
+/local/
+real-logs/
+tools/scan_terms.local.txt
+__pycache__/
+.pytest_cache/

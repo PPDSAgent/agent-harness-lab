@@ -1,0 +1,6 @@
+{"type":"header","note":"SYNTHETIC fixture for HL-026 run usage meter; labels only, cwd /Users/demo/proj"}
+{"type":"user","message":{"role":"user","content":"synthetic prompt from user-01"}}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-01","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":10,"output_tokens":20,"cache_creation_input_tokens":30,"cache_read_input_tokens":40}}}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-01","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":10,"output_tokens":20,"cache_creation_input_tokens":30,"cache_read_input_tokens":40}}}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-01","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":10,"output_tokens":20,"cache_creation_input_tokens":30,"cache_read_input_tokens":40}}}
+{"type":"assistant","cwd":"/Users/demo/proj","message":{"id":"msg-02","role":"assistant","content":[{"type":"text","text":"synthetic block"}],"usage":{"input_tokens":1,"output_tokens":2,"cache_creation_input_tokens":3,"cache_read_input_tokens":4}}}

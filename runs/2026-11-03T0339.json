@@ -1,0 +1,165 @@
+{
+  "base": "main",
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "npm audit --omit=dev"
+    },
+    {
+      "exit": 1,
+      "name": "npm audit"
+    },
+    {
+      "exit": 0,
+      "name": "pip-audit faker==40.44.0"
+    },
+    {
+      "exit": 2,
+      "name": "semgrep --config auto"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --all"
+    },
+    {
+      "exit": 1,
+      "name": "attack test_scanner_bypass.py (lead re-run)"
+    },
+    {
+      "exit": 1,
+      "name": "attack test_guard_bypass.py (lead re-run)"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "security-pass",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "0 critical, 0 high, 3 medium, 7 low; seeded 1/5 caught",
+      "role": "red-team",
+      "started_at": null
+    },
+    {
+      "duty": "nightly-regression-perf",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "no regressions; LCP/CLS/INP unmeasured (no Playwright)",
+      "role": "test-engineer",
+      "started_at": null
+    }
+  ],
+  "finished_at": "2026-11-03T11:58:40Z",
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "SECURITY",
+  "mutation_check": null,
+  "needs_will": [
+    "semgrep --config auto blocked by proxy (semgrep.dev 403)",
+    "4 uncaught seeded defects = test gaps"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; repo was pre-cloned at /home/claude/harness-lab (symlinked as ~/harness-lab). Deny-list canary (step 1a): pwd=/home/claude/harness-lab HEAD=71bbaba canary-rule count=1; echo hl-deny-list-canary printed (not denied), but the session initial working dir was /home/claude, so loading from the repo dir is untested. Red-team dispatch prompt brief paste was malformed; agent ran on its registered type with main checked out. LCP/CLS/INP null: Playwright not installed (HL-009 unbuilt).",
+  "perf": [
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip",
+      "unit": "kB",
+      "value": 176.49
+    },
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": null
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": null
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": null
+    }
+  ],
+  "phase": "0-foundations",
+  "pr_number": null,
+  "redteam": {
+    "critical": 0,
+    "high": 0,
+    "issue": null,
+    "low": 7,
+    "medium": 3,
+    "seeded_caught": 1,
+    "seeded_total": 5
+  },
+  "review": null,
+  "run_date": "2026-11-03",
+  "schema_version": 2,
+  "slot": "0339",
+  "started_at": "2026-11-03T11:39:14Z",
+  "stop_rule": {
+    "evidence": null,
+    "project": "P0",
+    "status": "not-yet-checkable"
+  },
+  "suites": [
+    {
+      "duration_ms": 5660,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 35,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "regression",
+      "new_failures": [],
+      "passed": 35,
+      "skipped": 0
+    }
+  ],
+  "task_id": null,
+  "tokens": null
+}

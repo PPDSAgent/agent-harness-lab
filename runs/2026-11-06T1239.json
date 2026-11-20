@@ -1,0 +1,60 @@
+{
+  "base": "run/2026-11-05-2139-HL-008",
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules main missing-count (printed 0)"
+    },
+    {
+      "exit": 0,
+      "name": "faker install"
+    },
+    {
+      "exit": 0,
+      "name": "scan --stdin started comment"
+    },
+    {
+      "exit": 0,
+      "name": "check-runs on 5 open heads (all checks+guard success)"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [],
+  "finished_at": "2026-11-06T20:41:04Z",
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "WAIT",
+  "mutation_check": null,
+  "needs_will": [
+    "5/5 cap: PRs #12, #14, #15, #20, #21 are all CI green (checks+guard success, heads unchanged since the 0939 run) and labeled needs:will; merge bottom-up from #12 with a merge commit, or comment on them",
+    "#20 HL-009 carries two CONDITIONAL verdicts (fix pass used)"
+  ],
+  "notes": "goal_cmd: unavailable; add_repo/register_repo_root not in toolset, repo pre-cloned at /home/claude/harness-lab (symlinked to ~/harness-lab); deny-list check: session started in /home/claude (no .claude/settings.json there, not testable from start dir; the clone has the canary rule, count 1), echo hl-deny-list-canary echoed; no Will comments on open run PRs, no Will directions on Daily status since 2026-11-04T06:01:15Z; no open security issues; no hold label",
+  "perf": [],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-06",
+  "schema_version": 2,
+  "slot": "1239",
+  "started_at": "2026-11-06T20:39:12Z",
+  "stop_rule": {
+    "evidence": "PLAN.md stop rule P1.1 needs the recurring Mac check from Fri Nov 6; HL-017 and HL-020 are not started and builds are blocked at the 5/5 cap, so no check can run yet",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [],
+  "task_id": null,
+  "tokens": null
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "run_date": "2026-11-13",
+  "slot": "1539",
+  "started_at": "2026-11-13T23:39:04Z",
+  "finished_at": "2026-11-13T23:59:48Z",
+  "mode": "BUILD",
+  "task_id": "HL-023",
+  "phase": "1-observatory",
+  "branch": "run/2026-11-13-1539-HL-023",
+  "base": "run/2026-11-13-1243-HL-019",
+  "pr_number": null,
+  "loop_header": {
+    "goal": "HL-023: a P1 contract test - all three fixture sources (Claude Code, Codex, team runs/) validate against the normalized run model and the run-record schema",
+    "verifier": "frozen tests/frozen/HL-023.json red before, green after; lint, typecheck, npm test, build, main scan --diff, §3.5 frozen check, every frozen test passed",
+    "step": "one validator module plus its frozen contract test",
+    "stop": "success: all exit 0 and reviewer PASS; give up: tests not red for the right reason, frozen check fails, or the 140-minute box",
+    "budget": "140 min · 9 dispatches · 1 fix pass"
+  },
+  "freeze_sha": "c9196300272df5c3dcf0da9492e84508bc86b1a9",
+  "dispatches": [
+    {
+      "role": "test-engineer",
+      "duty": "freeze",
+      "model": "sonnet",
+      "outcome": "red-as-expected (module ../src/lib/ingest/contract missing; 98 tests)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "builder",
+      "duty": "build",
+      "model": "sonnet",
+      "outcome": "96c0b60, frozen 98/98 green",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "test-engineer",
+      "duty": "verify",
+      "model": "sonnet",
+      "outcome": "all green; UI and non-functional n/a; perf null (no ingest benchmark)",
+      "started_at": null,
+      "finished_at": null
+    },
+    {
+      "role": "reviewer",
+      "duty": "review r1",
+      "model": "opus",
+      "outcome": "PASS",
+      "started_at": null,
+      "finished_at": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "npm run lint",
+      "exit": 0
+    },
+    {
+      "name": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "name": "vitest run (796 tests)",
+      "exit": 0
+    },
+    {
+      "name": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "scan_sensitive.py (main) --diff",
+      "exit": 0
+    },
+    {
+      "name": "frozen check §3.5",
+      "exit": 0
+    },
+    {
+      "name": "every frozen test passed",
+      "exit": 0
+    }
+  ],
+  "suites": [
+    {
+      "name": "functional",
+      "exit": 0,
+      "passed": 796,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "integration",
+      "exit": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    },
+    {
+      "name": "regression",
+      "exit": 0,
+      "passed": 796,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": null,
+      "new_failures": []
+    }
+  ],
+  "perf": [],
+  "frozen_tests_unchanged": true,
+  "frozen_tests_all_ran": true,
+  "head_unchanged_by_review": true,
+  "mutation_check": {
+    "file_line": "src/lib/ingest/contract.ts:46 (Number.isFinite dropped from number|null)",
+    "went_red": true
+  },
+  "review": {
+    "verdict": "PASS",
+    "path": "reviews/2026-11-13T1539-HL-023-r1.md",
+    "fix_pass_used": false
+  },
+  "directions_acked": [],
+  "design": {
+    "verdict": null,
+    "screens": []
+  },
+  "redteam": null,
+  "stop_rule": {
+    "project": "P1",
+    "status": "at-risk",
+    "evidence": "HL-020 (#49) built but not merged; no recurring check has run on Will Mac; P1 window ended Nov 8 (PLAN.md Stop rule P1)"
+  },
+  "limits_hit": null,
+  "tokens": null,
+  "cost_usd": null,
+  "needs_will": [
+    "decide on reviewer low finding 1: contract.ts:102, :107 and :142 have no rejection test (a later fix freeze could add them)",
+    "merge #47 -> #48 -> #49 -> #51 -> this PR bottom-up; #47 and #48 carry needs:will"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list check skipped: reviews/*-deny-list-check.md records already on main. SEC-30 skipped: its fix is a law path. #47 and #48 skipped for FIX: needs:will with no Will comment since. No Will directions on Daily status since the last evening PR. Stack checks all green, newest verdicts not FAIL, so not red. Committed as schema v2 (stack HL-002 schema rejects v3). not_claimed: ingest perf budget unmeasured (no benchmark); ui/a11y suites not run (no UI change); sensitivity measured on one line only plus reviewer deletion of :102/:107 that stayed green. flakes: none observed."
+}

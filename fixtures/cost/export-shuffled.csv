@@ -1,0 +1,9 @@
+# SYNTHETIC cost export for HL-027, shuffled columns and quoting. Layout is an ASSUMPTION.
+# another comment
+
+description,currency,ending_at,amount,workspace_id,starting_at
+"label-a, with a comma",USD,2026-11-10T11:00:00Z,"1.25",ws-01,2026-11-10T10:00:00Z
+"label ""quoted"" b",USD,2026-11-10T11:00:00Z,0.5,ws-02,2026-11-10T10:00:00Z
+
+"label-c, ""both"", here",USD,2026-11-10T11:00:00Z,0.1,"ws-03",2026-11-10T10:00:00Z
+label-d,USD,2026-11-10T12:00:00Z,0.2,ws-01,2026-11-10T11:00:00Z

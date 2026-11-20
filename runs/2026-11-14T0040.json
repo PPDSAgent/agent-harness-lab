@@ -1,0 +1,210 @@
+{
+  "base": "run/2026-11-13-2309-HL-024",
+  "branch": "run/2026-11-14-0040-HL-025",
+  "checks": [
+    {
+      "exit": 0,
+      "name": "main ruleset rules missing (count)"
+    },
+    {
+      "exit": 0,
+      "name": "faker==40.44.0 install"
+    },
+    {
+      "exit": 0,
+      "name": "npm ci"
+    },
+    {
+      "exit": 0,
+      "name": "npm run lint"
+    },
+    {
+      "exit": 0,
+      "name": "npm run typecheck"
+    },
+    {
+      "exit": 0,
+      "name": "npm test"
+    },
+    {
+      "exit": 0,
+      "name": "npm run build"
+    },
+    {
+      "exit": 0,
+      "name": "scan_sensitive (main) --diff origin/run/2026-11-13-2309-HL-024..HEAD"
+    },
+    {
+      "exit": 0,
+      "name": "frozen check"
+    },
+    {
+      "exit": 0,
+      "name": "playwright --project a11y (json) every frozen spec passed"
+    },
+    {
+      "exit": 0,
+      "name": "npm run usage on this run transcripts"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [
+    {
+      "duty": "freeze",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "red-as-expected: A3 failed (a11y project lists only a11y.spec.ts); 24 A1/A2/A4 tests already green on the app",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "build",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "a8ea222: playwright.config.ts a11y testMatch adds the new spec; ui testIgnore matches",
+      "role": "builder",
+      "started_at": null
+    },
+    {
+      "duty": "verify",
+      "finished_at": null,
+      "model": "sonnet",
+      "outcome": "all suites exit 0; no regression; no screens (no UI file changed)",
+      "role": "test-engineer",
+      "started_at": null
+    },
+    {
+      "duty": "review",
+      "finished_at": null,
+      "model": "opus",
+      "outcome": "PASS r1, 3 low findings",
+      "role": "reviewer",
+      "started_at": null
+    }
+  ],
+  "finished_at": null,
+  "freeze_sha": "cedaa2a225e7b13ceccedaa63f8fb59fc845133d",
+  "frozen_tests_all_ran": true,
+  "frozen_tests_unchanged": true,
+  "head_unchanged_by_review": true,
+  "limits_hit": null,
+  "loop_header": {
+    "budget": "whole-run box from started_at · 9 dispatches · 1 fix pass",
+    "goal": "HL-025: target-size (WCAG 2.2 SC 2.5.8) and reflow (SC 1.4.10) checks in npm run test:a11y at 390 px, green",
+    "step": "one task, one BUILD",
+    "stop": "success: all checks 0 and reviewer PASS; give up: time box (130/140 min) or a frozen test red for the wrong reason",
+    "verifier": "frozen e2e/a11y-target-size-reflow.spec.ts (tests/frozen/HL-025.json); frozen check; every frozen test passed in the Playwright JSON report; lint, typecheck, npm test, build, test:a11y, main scan --diff; fresh reviewer"
+  },
+  "mode": "BUILD",
+  "mutation_check": {
+    "file_line": "src/components/theme-toggle.tsx:39",
+    "went_red": true
+  },
+  "needs_will": [
+    "HL-025 review F1-F3 (low): run-detail view, lazy Show data table toggle, broad reflow exemption not covered by the frozen spec; a follow-up frozen spec is Will call",
+    "Deny list did not load (canary echoed; session started in /home/claude)",
+    "SEC-30 (#30, high) still open; its fix is a law path and needs a law/* PR"
+  ],
+  "notes": "goal_cmd: unavailable. add_repo/register_repo_root not in toolset; used the pre-attached clone at /home/claude/harness-lab, symlinked to ~/harness-lab. Deny-list check: records already on main, so step 1a no longer required; ran anyway: session started in /home/claude, canary echoed (not testable from this start directory). Committed as schema v2 (HL-002 Ajv accepts only v2). SEC-30 skipped (law path). tokens = npm run usage on lead + 4 subagent transcripts before the run record (later turns not counted): {\"tokens\":9085206,\"input_tokens\":174,\"output_tokens\":46575,\"cache_creation_input_tokens\":548535,\"cache_read_input_tokens\":8489922,\"messages\":82,\"files\":5,\"skipped_lines\":0,\"cost_usd\":null,\"cost_source\":\"no measured cost in the transcript: read the figure from the account's billing usage/cost report for the run's time window; tokens are never priced here\"}. not_claimed: cost_usd (no measured USD in cloud transcripts); run-detail view and 320 px axe not under test:a11y (review F1); the +1 unit test vs the baseline record is not explained (no vitest file in this diff; not bisected); dispatch start/finish times not recorded. flakes: none observed. review.unflagged_claims: null.",
+  "perf": [
+    {
+      "budget": 2500,
+      "machine": "cloud-runner",
+      "metric": "lcp_main_route",
+      "unit": "ms",
+      "value": 215
+    },
+    {
+      "budget": 0.1,
+      "machine": "cloud-runner",
+      "metric": "cls_main_route",
+      "unit": "score",
+      "value": 0.0155
+    },
+    {
+      "budget": 200,
+      "machine": "cloud-runner",
+      "metric": "inp_main_route",
+      "unit": "ms",
+      "value": 32
+    },
+    {
+      "budget": 250,
+      "machine": "cloud-runner",
+      "metric": "initial_js_gzip_main_route",
+      "unit": "KB",
+      "value": 183.8
+    }
+  ],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": {
+    "fix_pass_used": false,
+    "path": "reviews/2026-11-14T0040-HL-025-r1.md",
+    "verdict": "PASS"
+  },
+  "run_date": "2026-11-14",
+  "schema_version": 2,
+  "slot": "0040",
+  "started_at": "2026-11-14T08:40:27Z",
+  "stop_rule": {
+    "evidence": "HL-020 merged (#49) but no recurring check on Will Mac is visible to a cloud run; P1 window ended Nov 8 (PLAN.md Stop rule P1)",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "functional",
+      "new_failures": [],
+      "passed": 829,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "integration",
+      "new_failures": [],
+      "passed": 6,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "ui",
+      "new_failures": [],
+      "passed": 104,
+      "skipped": 0
+    },
+    {
+      "duration_ms": 47585,
+      "exit": 0,
+      "failed": 0,
+      "name": "a11y",
+      "new_failures": [],
+      "passed": 27,
+      "skipped": 0
+    },
+    {
+      "duration_ms": null,
+      "exit": 0,
+      "failed": 0,
+      "name": "journeys",
+      "new_failures": [],
+      "passed": 3,
+      "skipped": 0
+    }
+  ],
+  "task_id": "HL-025",
+  "tokens": 9085206
+}

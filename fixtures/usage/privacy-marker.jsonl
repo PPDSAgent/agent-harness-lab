@@ -1,0 +1,2 @@
+{"type":"header","note":"SYNTHETIC fixture for HL-026 run usage meter; labels only, cwd /Users/demo/proj"}
+{"type":"assistant","message":{"id":"msg-08","role":"assistant","content":[{"type":"text","text":"ZQX-PRIVATE-MARKER-7731 synthetic secret-ish text"}],"usage":{"input_tokens":3,"output_tokens":4,"cache_creation_input_tokens":5,"cache_read_input_tokens":6}}}

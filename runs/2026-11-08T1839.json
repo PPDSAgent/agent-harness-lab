@@ -1,0 +1,65 @@
+{
+  "base": "run/2026-11-05-2139-HL-008",
+  "branch": null,
+  "checks": [
+    {
+      "exit": 0,
+      "name": "rules main missing-count (printed 0)"
+    },
+    {
+      "exit": 0,
+      "name": "faker install"
+    },
+    {
+      "exit": 0,
+      "name": "scan --stdin started comment"
+    },
+    {
+      "exit": 0,
+      "name": "check-runs on 5 open heads (all checks+guard success)"
+    },
+    {
+      "exit": 0,
+      "name": "scan --stdin finished comment"
+    }
+  ],
+  "cost_usd": null,
+  "design": {
+    "screens": [],
+    "verdict": null
+  },
+  "directions_acked": [],
+  "dispatches": [],
+  "finished_at": "2026-11-09T02:40:42Z",
+  "freeze_sha": null,
+  "frozen_tests_all_ran": null,
+  "frozen_tests_unchanged": null,
+  "head_unchanged_by_review": null,
+  "limits_hit": null,
+  "loop_header": null,
+  "mode": "WAIT",
+  "mutation_check": null,
+  "needs_will": [
+    "5/5 cap: PRs #12, #14, #15, #20, #21 all CI green (checks+guard success, heads unchanged) and labeled needs:will; merge bottom-up from #12 with a merge commit, or comment on them",
+    "SEC-24 (issue #24, severity high) is first in line but its fix is in .github/workflows/guard.yml, a law path: needs Will's law/* PR",
+    "P2 day 1 is Mon Nov 9 (stop rule P2 is checked at its end); HL-030 cannot start while the cap holds"
+  ],
+  "notes": "goal_cmd: unavailable; add_repo/register_repo_root not in toolset, repo pre-cloned at /home/claude/harness-lab at origin/main 8dc9f94, ~/harness-lab symlinked this run (HOME is /root); deny-list check: session started in /home/claude, which has no .claude/settings.json (canary count missing), so not testable from this start directory; in the clone the settings file has the canary rule (count 1) and echo hl-deny-list-canary echoed its text; no Will comments on open run PRs (issue comments, review comments, reviews) or on Daily status (all 5 comments are bot) since evening PR head; open security issue #24 (high) noted; no hold; stack linear 12-14-15-20-21; slot 18, no SECURITY or evening work. Run made zero dispatches.",
+  "perf": [],
+  "phase": "1-observatory",
+  "pr_number": null,
+  "redteam": null,
+  "review": null,
+  "run_date": "2026-11-08",
+  "schema_version": 2,
+  "slot": "1839",
+  "started_at": "2026-11-09T02:39:20Z",
+  "stop_rule": {
+    "evidence": "PLAN.md stop rule P1.1 needs the recurring Mac check from Fri Nov 6; HL-017 and HL-020 not started, builds blocked at the 5/5 cap; P1 window ends tonight, Sun Nov 8",
+    "project": "P1",
+    "status": "at-risk"
+  },
+  "suites": [],
+  "task_id": null,
+  "tokens": null
+}
