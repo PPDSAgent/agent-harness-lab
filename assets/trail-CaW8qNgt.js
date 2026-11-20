@@ -1,0 +1,1 @@
+import{a as e,i as t}from"./index--ZXqr2Pd.js";var n=e(),r=`[aria-label="Evidence trail"]`;function i({open:e}){let i=e=>{let t=document.querySelector(r);t?t.focus():e>0&&requestAnimationFrame(()=>i(e-1))};return(0,n.jsx)(t,{variant:`secondary`,size:`sm`,className:`mb-3 border`,onClick:()=>{e(!0),i(120)},children:`Open the evidence trail for these runs`})}export{i as default};
