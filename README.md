@@ -1,9 +1,9 @@
-# Agent Harness Lab: Harness Run Observatory
+# Truehelm Sextant · Agent Harness Lab
 
-**Live demo:** https://ppdsagent.github.io/agent-harness-lab/ (session logs are synthetic; the run
-records are the build team's own)
+**The story:** https://ppdsagent.github.io/agent-harness-lab/ · **Sextant (the run monitor):** https://ppdsagent.github.io/agent-harness-lab/app/
+(session logs are synthetic; the run records are the build team's own)
 
-A dashboard over AI agent run logs. It reads Claude Code and Codex session logs, plus the run
+Monitoring and observability for AI agent runs. It reads Claude Code and Codex session logs, plus the run
 records of the agent team that built it, and answers three questions, each with its source and
 sample size:
 
