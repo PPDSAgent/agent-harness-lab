@@ -1,41 +1,272 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark light" />
-    <script>
-      // Apply the saved theme before first paint (same rules as src/lib/theme.ts): default
-      // dark; "system" follows the OS with a dark fallback; storage may be unavailable.
-      (function () {
-        var pref = "dark";
-        try {
-          var saved = localStorage.getItem("hl-theme");
-          if (saved === "dark" || saved === "light" || saved === "system") pref = saved;
-        } catch (e) {}
-        var theme = pref;
-        if (pref === "system") {
-          try {
-            theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-          } catch (e) {
-            theme = "dark";
-          }
-        }
-        document.documentElement.setAttribute("data-theme", theme);
-        document.documentElement.style.colorScheme = theme;
-      })();
-    </script>
-    <link rel="icon" type="image/svg+xml" href="/agent-harness-lab/favicon.svg" />
-    <title>harness-lab</title>
-    <script type="module" crossorigin src="/agent-harness-lab/assets/index--ZXqr2Pd.js"></script>
-    <link rel="modulepreload" crossorigin href="/agent-harness-lab/assets/react-sySUN5R7.js">
-    <link rel="stylesheet" crossorigin href="/agent-harness-lab/assets/index-CKcVg9qX.css">
-  </head>
-  <body>
-    <div id="root">
-      <main class="mx-auto w-full max-w-5xl px-4 py-6 sm:py-10">
-        <p role="status" class="rounded-md border border-dashed px-4 py-3 text-sm text-muted-foreground">Loading…</p>
-      </main>
-    </div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Truehelm · Agent Harness Lab</title>
+<meta name="description" content="A team of AI agents built and tested a working product on a schedule, under rules and quality gates I set. The product, the system that built it, and the evidence.">
+<meta property="og:title" content="Truehelm · Agent Harness Lab">
+<meta property="og:description" content="A team of AI agents built and tested a product on a schedule. I set the rules and kept control of what shipped.">
+<link rel="icon" href="app/favicon.svg" type="image/svg+xml">
+<script>
+/* Same preference as the app (src/lib/theme.ts): key "hl-theme", dark by default, System follows the OS. */
+(function(){var p="dark";try{var v=localStorage.getItem("hl-theme");if(v==="dark"||v==="light"||v==="system")p=v}catch(e){}
+var t=p;if(p==="system"){try{t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}catch(e){t="dark"}}
+document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;document.documentElement.dataset.pref=p})();
+</script>
+<style>
+:root{
+  --bg:#f7f6f2;--fg:#191917;--muted:#5b5951;--line:#e2ded4;--card:#ffffff;
+  --accent:#0f6a7c;--accent-2:#4f46e5;--accent-fg:#ffffff;--chip:#e6f0f2;--shadow:0 1px 2px rgba(20,20,15,.05),0 8px 24px rgba(20,20,15,.06);
+  --glow-a:rgba(15,106,124,.18);--glow-b:rgba(79,70,229,.14);
+}
+:root[data-theme="dark"]{
+  --bg:#0f1110;--fg:#ecebe6;--muted:#a3a198;--line:#2a2d2a;--card:#161917;
+  --accent:#5eb8b8;--accent-2:#a5b4fc;--accent-fg:#0b1a15;--chip:#172527;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  --glow-a:rgba(94,184,184,.16);--glow-b:rgba(165,180,252,.12);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before,.hero::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(70px);z-index:0;animation:drift 18s ease-in-out infinite alternate}
+.hero::before{background:var(--glow-a);top:-220px;left:-140px}
+.hero::after{background:var(--glow-b);top:-160px;right:-180px;animation-delay:-9s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.08)}}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.hero .wrap{padding-top:72px;padding-bottom:56px}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--chip);border-radius:999px;padding:4px 12px;margin-bottom:18px}
+h1{font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.15;margin:0 0 18px;letter-spacing:-.02em}
+h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.4rem;letter-spacing:-.01em;margin:0 0 14px}
+section{padding:56px 0 8px}
+p{margin:0 0 14px}
+.theme{position:absolute;top:18px;right:20px;z-index:2;display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:var(--shadow)}
+.theme button{font:inherit;font-size:.78rem;border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:999px;cursor:pointer}
+.theme button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.theme button:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+.byline{margin:-6px 0 14px;font-size:.85rem;color:var(--muted)}
+.lede{font-size:1.18rem;color:var(--muted);max-width:640px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid var(--accent);transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px}
+.btn.primary{background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{color:var(--accent);background:transparent}
+.btn .arr{transition:transform .18s ease}
+.btn:hover .arr{transform:translateX(3px)}
+a{color:var(--accent)}
+.muted{color:var(--muted)}
+/* walkthrough timeline */
+.timeline{position:relative;margin:24px 0 0;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),var(--accent-2));opacity:.5;border-radius:2px}
+.layer{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 14px;box-shadow:var(--shadow)}
+.layer::before{content:"";position:absolute;left:-27px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.layer .t{display:flex;gap:10px;align-items:baseline;margin-bottom:6px}
+.layer .t b{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.layer .t span{font-weight:600}
+.layer p:last-child{margin-bottom:0}
+.chips{margin:8px 0 12px}
+.chip{display:inline-block;background:var(--chip);color:var(--fg);border-radius:999px;padding:3px 11px;font-size:.78rem;margin:3px 5px 3px 0}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.stat .n{display:inline-block;font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.02em;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.stat .l{font-size:.85rem;color:var(--muted);margin-top:6px}
+.src{font-size:.78rem;color:var(--muted)}
+code{font:.85em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--chip);padding:1px 5px;border-radius:5px}
+/* mine vs agents */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+.col h3{margin:0 0 10px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.col ul{margin:0;padding-left:18px}
+.col li{margin:6px 0}
+/* lessons */
+.lessons{list-style:none;padding:0;margin:18px 0 0}
+.lessons li{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-2);border-radius:14px;box-shadow:var(--shadow);padding:14px 18px;margin:0 0 12px}
+.lessons b{display:block;margin-bottom:2px}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+footer{margin:64px 0 0;padding:20px 0 48px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+/* reveal on scroll */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media print{.js .js .reveal{opacity:1;transform:none;transition:none}.hero::before,.hero::after{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero::before,.hero::after{animation:none}.js .reveal{opacity:1;transform:none;transition:none}.btn,.btn .arr{transition:none}}
+@media (max-width:620px){.split{grid-template-columns:1fr}.hero .wrap{padding-top:48px}.timeline{padding-left:22px}.layer::before{left:-21px}.timeline::before{left:4px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="theme" role="group" aria-label="Color theme"><button type="button" data-set="dark">Dark</button><button type="button" data-set="light">Light</button><button type="button" data-set="system">System</button></div>
+<div class="wrap">
+<span class="eyebrow">Truehelm · Agent Harness Lab</span>
+<p class="byline"><a href="https://www.linkedin.com/in/williamrkent">About me →</a></p>
+<h1>I set up a team of AI agents and had them <span class="grad">build a product on a schedule.</span></h1>
+<p class="lede">I kept control of what shipped. Below: what they built, the system I put around
+them, and how it went, including what didn't go well.</p>
+<div class="cta">
+  <a class="btn primary" href="app/">Open Sextant <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn ghost" href="https://github.com/PPDSAgent/agent-harness-lab">See the code</a>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+
+<section class="reveal">
+<h2>Why it matters</h2>
+<p>AI agents can now write code with nobody at the keyboard. Getting output is easy. Trusting it
+takes evidence. Did the tests run? Did the claim hold? Did anything sensitive slip out?</p>
+<p>I wanted to answer two questions. Can a team of agents build real software on a schedule while a
+person keeps control of what ships? Can the work be made visible enough to check?</p>
+</section>
+
+<section class="reveal">
+<h2>Who it's for</h2>
+<p>You have a company to run. You need capabilities that land, and clarity on what they'll take.
+I give you a high-confidence assessment of what it will take to build a product, feature or
+capability for your business: how long it will take, what it will cost, and how you can verify it
+works before it touches anything that matters. Then I build it.</p>
+<p>This lab is the foundation of that business, Truehelm, an AI engineering team for small and
+medium-sized businesses. I built a small team of agents, run under clear rules with a person accountable for
+what ships. Here I took that model from zero to a team that ships. Sextant, the run monitor below, is
+what you get: a live view of where your project stands, what it costs, and the proof.</p>
+</section>
+
+<section>
+<h2 class="reveal">The walkthrough</h2>
+<p class="muted reveal">Stop at any layer.</p>
+<div class="timeline">
+
+<div class="layer reveal"><div class="t"><b>30 seconds</b><span>The idea</span></div>
+<p>A scheduled team of AI agents built and tested a run-monitoring tool. I set the goal, the rules and the
+quality gates. No change merged without my go-ahead: I approved each one at first, and later a
+standing rule I set covered them (green checks and a passing review). The monitor is what
+they built.</p></div>
+
+<div class="layer reveal"><div class="t"><b>2 minutes</b><span>Sextant, the run monitor</span></div>
+<p><a href="app/">Truehelm Sextant</a> is the monitoring and observability view over the
+team's work. It reads agent run logs and answers three questions,
+each with its source and sample size. Which skill fails most often? What does each scheduled run
+cost? Which claims carry no evidence? A number that was never measured shows as "not recorded",
+never a guess. It shows the build team's own run records, which are real, next to synthetic
+Claude Code and Codex logs. Each view labels which is which.</p></div>
+
+<div class="layer reveal"><div class="t"><b>5 minutes</b><span>The system that built it</span></div>
+<p>Several times a day, a lead agent wakes up in the cloud, reads the repo's state and picks the next
+task. It hands the work to specialist agents:</p>
+<div class="chips"><span class="chip">test engineer</span><span class="chip">builder</span><span class="chip">reviewer</span><span class="chip">design critic</span><span class="chip">red team</span><span class="chip">tutor</span><span class="chip">steward</span></div>
+<p>Acceptance tests are written and frozen first. The builder writes code until they pass. A
+reviewer in a fresh context grades the change and must break one of its own checks to prove the
+tests can fail. Every change arrives as a draft pull request, and nothing merges without my
+go-ahead.</p></div>
+
+<div class="layer reveal"><div class="t"><b>10 minutes</b><span>The guardrails</span></div>
+<p>Agents that run unattended can rewrite their own rules. So the rule files are protected paths no
+agent branch may touch. The check that enforces this runs from the main branch, not from the pull
+request, so a change can't switch off its own guard. A scanner blocks secrets and personal data in
+every diff, and a red team attacks those guards. The red team and the reviewers found seven
+high-severity holes in the agents' own guardrails. One was a file name with a quote character that
+slipped past the scanner. Every fix came with its own tests, and most were written tests first.</p></div>
+
+<div class="layer reveal"><div class="t"><b>Go deeper</b><span>The evidence</span></div>
+<p>Most first-round reviews did not pass: 36 of 46 came back conditional or failed.</p></div>
+
+</div>
+</section>
+
+<section>
+<h2 class="reveal">By the numbers</h2>
+<div class="stats">
+  <div class="stat reveal"><div class="n" data-count="19" data-suffix=" days">19 days</div><div class="l">from the first commit to this snapshot</div></div>
+  <div class="stat reveal"><div class="n" data-count="462">462</div><div class="l">commits on main</div></div>
+  <div class="stat reveal"><div class="n" data-count="63">63</div><div class="l">merged pull requests, of 70 opened at that commit</div></div>
+  <div class="stat reveal"><div class="n" data-count="67">67</div><div class="l">recorded runs of the agent team</div></div>
+  <div class="stat reveal"><div class="n" data-count="46">46</div><div class="l">first-round reviews (files named -r1): 10 pass, 30 conditional, 6 fail</div></div>
+  <div class="stat reveal"><div class="n" data-count="7">7</div><div class="l">high-severity holes found by its own red team and reviewers</div></div>
+</div>
+<p class="src reveal">Source: the private build repo at commit <code>7adc18c</code>, 2026-11-20:
+<code>git rev-list --count</code>, GitHub's pull request and issue lists, <code>runs/*.json</code>,
+the first verdict line of each <code>-r1</code> review, and the Run log (issue #42) for the WAIT runs. Of the 7 security findings, 3 are closed;
+the other 4 have fixes merged or in review.</p>
+</section>
+
+<section>
+<h2 class="reveal">What I kept, and what I delegated</h2>
+<p class="reveal">The point was to find the line: what needs a person's judgment, and what can be
+handed to agents safely, with evidence that it worked.</p>
+<div class="split">
+  <div class="col reveal"><h3>I kept control of</h3><ul>
+    <li>The goal and the scope: three projects, with a phase plan and stop rules written before the build began</li>
+    <li>The operating model: who does what, what agents may never do, and the gates every change passes (drafted with AI, approved by me)</li>
+    <li>Product and design decisions, recorded with dates</li>
+    <li>Every merge decision, or the rule that made it</li>
+  </ul></div>
+  <div class="col reveal"><h3>I delegated to agents</h3><ul>
+    <li>The code: all 462 commits on main were made by agents (95 of them under the account my agent sessions share)</li>
+    <li>The tests, written and frozen before each build</li>
+    <li>The reviews, red-team reports and run records</li>
+  </ul></div>
+</div>
+</section>
+
+<section>
+<h2 class="reveal">What I'd do differently</h2>
+<ul class="lessons">
+<li class="reveal"><b>The first cycle costs real effort.</b> Setting up the team and its rules took real
+work: 13 of 63 merged pull requests changed the rules rather than the product. Some of that was
+the initial setup, some was fixing what the red team found, and some was the system tuning itself.</li>
+<li class="reveal"><b>I was the bottleneck.</b> The team stops opening work when five pull requests are
+waiting or one is blocked on me, and that happened in 30 of its runs. The fix is clear examples of
+the quality bar, so agents can make the revisions themselves and first-pass work improves without a
+person in every review.</li>
+</ul>
+</section>
+
+<section class="reveal">
+<h2>Built with</h2>
+<div class="stack"><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Vite</span><span class="chip">Tailwind CSS</span><span class="chip">Recharts</span><span class="chip">JSON Schema (Ajv)</span><span class="chip">Vitest</span><span class="chip">Testing Library</span><span class="chip">Playwright + axe-core</span><span class="chip">Python scanners</span><span class="chip">GitHub Actions and rulesets</span><span class="chip">Claude Code scheduled cloud agents</span></div>
+<div class="cta">
+  <a class="btn primary" href="app/">Open Sextant <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn ghost" href="https://github.com/PPDSAgent/agent-harness-lab">See the code</a>
+</div>
+</section>
+
+<footer>Agent Harness Lab is a public snapshot of a private build repo. The session logs in the
+monitor's Claude Code and Codex views are synthetic; the team's run records are real. Nothing
+here comes from an employer.</footer>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".theme button");
+  function resolve(p){if(p!=="system")return p;try{return matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}catch(e){return "dark"}}
+  function set(p,save){root.dataset.pref=p;var t=resolve(p);root.dataset.theme=t;root.style.colorScheme=t;
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.set===p))});
+    if(save){try{localStorage.setItem("hl-theme",p)}catch(e){}}}
+  btns.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.set,true)})});
+  try{matchMedia("(prefers-color-scheme: light)").addEventListener("change",function(){if(root.dataset.pref==="system")set("system",false)})}catch(e){}
+  set(root.dataset.pref||"dark",false);
+})();
+(function(){
+  document.documentElement.classList.add("js");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els = document.querySelectorAll(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) { els.forEach(function(e){ e.classList.add("in"); }); return; }
+  function countUp(el){
+    var end = +el.dataset.count, suffix = el.dataset.suffix || "", t0 = null, dur = 900;
+    function step(t){ if(!t0) t0 = t; var k = Math.min(1,(t - t0)/dur); k = 1 - Math.pow(1-k,3);
+      el.textContent = Math.round(end*k) + suffix; if (k < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(!en.isIntersecting) return; en.target.classList.add("in");
+      var n = en.target.querySelector("[data-count]"); if (n) countUp(n); io.unobserve(en.target); });
+  }, {threshold:.15});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
 </html>

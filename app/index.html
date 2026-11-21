@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      // Apply the saved theme before first paint (same rules as src/lib/theme.ts): default
+      // dark; "system" follows the OS with a dark fallback; storage may be unavailable.
+      (function () {
+        var pref = "dark";
+        try {
+          var saved = localStorage.getItem("hl-theme");
+          if (saved === "dark" || saved === "light" || saved === "system") pref = saved;
+        } catch (e) {}
+        var theme = pref;
+        if (pref === "system") {
+          try {
+            theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          } catch (e) {
+            theme = "dark";
+          }
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/agent-harness-lab/app/favicon.svg" />
+    <title>harness-lab</title>
+    <script type="module" crossorigin src="/agent-harness-lab/app/assets/index--V16CfUh.js"></script>
+    <link rel="modulepreload" crossorigin href="/agent-harness-lab/app/assets/react-sySUN5R7.js">
+    <link rel="stylesheet" crossorigin href="/agent-harness-lab/app/assets/index-CKcVg9qX.css">
+  </head>
+  <body>
+    <div id="root">
+      <main class="mx-auto w-full max-w-5xl px-4 py-6 sm:py-10">
+        <p role="status" class="rounded-md border border-dashed px-4 py-3 text-sm text-muted-foreground">Loading…</p>
+      </main>
+    </div>
+  </body>
+</html>
